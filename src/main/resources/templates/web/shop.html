@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <meta
+    http-equiv="content-type"
+    content="text/html;charset=utf-8"
+  />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="author" content="mironcoder" />
+    <meta name="email" content="mironcoder@gmail.com" />
+    <meta name="profile" content="https://themeforest.net/user/mironcoder" />
+    <meta name="template" content="greeny" />
+    <meta name="title" content="greeny - Ecommerce Food Store HTML Template" />
+    <meta
+      name="keywords"
+      content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online"
+    />
+    <title>Thế giới nông sản</title>
+<link rel="icon" href="/images/logo.png" />
+    <link rel="stylesheet" href="fonts/flaticon/flaticon.css" />
+    <link rel="stylesheet" href="fonts/icofont/icofont.min.css" />
+    <link rel="stylesheet" href="fonts/fontawesome/fontawesome.min.css" />
+    <link rel="stylesheet" href="vendor/venobox/venobox.min.css" />
+    <link rel="stylesheet" href="vendor/slickslider/slick.min.css" />
+    <link rel="stylesheet" href="vendor/niceselect/nice-select.min.css" />
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+  
+  <!--************************************
+				Header Start
+		*************************************-->
+		<header th:replace="~{/web/fragments/header :: header}"></header>
+		<!--************************************
+				Header End
+		*************************************-->
+
+    <section
+      class="inner-section single-banner"
+      style="background: url(images/single-banner.jpg) no-repeat center">
+      <div class="container">
+        <h2>Sản phẩm</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{/}">Trang chủ</a>
+            </li>
+        </ol>
+      </div>
+    </section>
+  <section class="inner-section shop-part">
+	  <div class="container">
+		  <div class="row content-reverse">
+
+			  <div class="col-lg-9">
+				  <div class="row">
+					  <div class="col-lg-12">
+						  <div class="top-filter">
+							  <div class="filter-show">
+								  <label class="filter-label"></label>
+							  </div>
+						  </div>
+					  </div>
+
+					  <!-- item product -->
+					  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 10%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=01.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=8" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Ớt chuông</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>16.000 đ</del>
+										  <span>14.400 đ<small></small></span>
+									  </h6>
+
+
+
+
+									  <a class="product-add2">
+										  <i class="fas fa-shopping-basket"></i><span>Hết hàng</span>
+									  </a>
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 5%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=02.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=9" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Cà rốt</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>39.000 đ</del>
+										  <span>37.050 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=9">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 2%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=03.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=10" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Dưa leo</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>25.000 đ</del>
+										  <span>24.500 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=10">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 0%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=04.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=11" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Cà tím</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>30.000 đ</del>
+										  <span>30.000 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=11">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 0%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=05.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=12" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Đậu bắp</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>25.000 đ</del>
+										  <span>25.000 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=12">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 3%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=06.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=13" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Cà chua</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>25.000 đ</del>
+										  <span>24.250 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=13">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 0%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=09.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=14" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Cải ngọt</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>40.000 đ</del>
+										  <span>40.000 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=14">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 0%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=12.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=15" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Bí đỏ</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>10.000 đ</del>
+										  <span>10.000 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=15">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 5%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=13.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=16" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Dâu tây</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>120.000 đ</del>
+										  <span>114.000 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=16">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 0%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=14.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=17" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Xoài keo</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>22.000 đ</del>
+										  <span>22.000 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=17">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 3%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=16.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=18" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Cam</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>35.000 đ</del>
+										  <span>33.950 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=18">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+						  <div class="col">
+							  <div class="product-card">
+								  <div class="product-media">
+									  <div class="product-label">
+										  <label class="label-text sale">- 5%</label>
+									  </div>
+
+
+
+
+									  <button class="product-wish">
+										  <i class="fas fa-heart"></i>
+									  </button>
+
+
+									  <a class="product-image" href="javascript:void(0);">
+										  <img src="/loadImage?imageName=17.jpg" alt="product">
+									  </a>
+									  <div class="product-widget">
+
+
+										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
+										  </a>
+
+
+
+
+										  <!--                         <a -->
+										  <!--                         title="Video về sản phẩm" -->
+										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
+										  <!--                         class="venobox fas fa-play" -->
+										  <!--                         data-autoplay="true" -->
+										  <!--                         data-vbtype="video"> -->
+										  <!--                         </a> -->
+										  <a title="Chi tiết sản phẩm" href="/productDetail?id=19" class="fas fa-eye">
+										  </a>
+									  </div>
+								  </div>
+								  <div class="product-content">
+									  <div class="product-rating">
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="active icofont-star"></i>
+										  <i class="icofont-star"></i>
+									  </div>
+									  <h6 class="product-name">
+										  <a href="javascript:void(0);">Nho xanh</a>
+									  </h6>
+									  <h6 class="product-price">
+										  <del>170.000 đ</del>
+										  <span>161.500 đ<small></small></span>
+									  </h6>
+
+
+									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=19">
+										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
+									  </a>
+
+
+
+
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+
+					  <div class="row">
+						  <div class="col-lg-12">
+							  <div class="bottom-paginate">
+								  <p class="page-info"></p>
+								  <ul class="pagination">
+
+									  <li class="page-item">
+										  <a class="page-link active" href="/products?size=12&amp;page=1">
+											  1
+										  </a>
+									  </li>
+
+									  <li class="page-item">
+										  <a href="/products?size=12&amp;page=2">
+											  2
+										  </a>
+									  </li>
+
+									  <li class="page-item">
+										  <a href="/products?size=12&amp;page=3">
+											  3
+										  </a>
+									  </li>
+
+								  </ul>
+							  </div>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="col-lg-3">
+				  <div class="shop-widget-promo">
+					  <a href="#"><img src="images/promo/shop/01.jpg" alt="promo"></a>
+				  </div>
+				  <div class="shop-widget">
+					  <h6 class="shop-widget-title">Theo thể loại</h6>
+
+					  <ul class="shop-widget-list shop-widget-scroll">
+						  <li>
+							  <div class="shop-widget-content">
+								  <a href="/productByCategory?id=4">
+									  <label for="cate1" style="color: #119744">Rau củ</label>
+								  </a>
+							  </div>
+							  <span class="shop-widget-number">(8)</span>
+						  </li>
+						  <li>
+							  <div class="shop-widget-content">
+								  <a href="/productByCategory?id=5">
+									  <label for="cate1" style="color: #119744">Trái cây</label>
+								  </a>
+							  </div>
+							  <span class="shop-widget-number">(10)</span>
+						  </li>
+						  <li>
+							  <div class="shop-widget-content">
+								  <a href="/productByCategory?id=6">
+									  <label for="cate1" style="color: #119744">Củ quả</label>
+								  </a>
+							  </div>
+							  <span class="shop-widget-number">(10)</span>
+						  </li>
+						  <li>
+							  <div class="shop-widget-content">
+								  <a href="/productByCategory?id=11">
+									  <label for="cate1" style="color: #119744">Hạt dinh dưỡng</label>
+								  </a>
+							  </div>
+							  <span class="shop-widget-number">(5)</span>
+						  </li>
+						  <li>
+							  <div class="shop-widget-content">
+								  <a href="/productByCategory?id=12">
+									  <label for="cate1" style="color: #119744">Đặt sản vùng miền</label>
+								  </a>
+							  </div>
+							  <span class="shop-widget-number">(2)</span>
+						  </li>
+					  </ul>
+
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+
+
+  </section>
+    
+    <section class="news-part"
+		style="background: url(images/newsletter.jpg) no-repeat center">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-5 col-lg-6 col-xl-7">
+					<div class="news-text">
+						<h2>Nhận Chiết Khấu 20% Cho Người Đăng Ký</h2>
+						<p>Nhận Chiết Khấu 20% Cho Người Đăng Ký</p>
+					</div>
+				</div>
+				<div class="col-md-7 col-lg-6 col-xl-5">
+					<form class="news-form">
+						<input type="text" placeholder="Nhập Địa Chỉ Email Của Bạn" />
+						<button>
+							<span><i class="icofont-ui-email"></i>Gửi</span>
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="intro-part">
+		<div class="container">
+			<div class="row intro-content">
+				<div class="col-sm-6 col-lg-3">
+					<div class="intro-wrap">
+						<div class="intro-icon">
+							<i class="fas fa-truck"></i>
+						</div>
+						<div class="intro-content">
+							<h5>Giao Hàng Tận Nhà Miễn Phí</h5>
+							<p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-lg-3">
+					<div class="intro-wrap">
+						<div class="intro-icon">
+							<i class="fas fa-sync-alt"></i>
+						</div>
+						<div class="intro-content">
+							<h5>Chính Sách Hoàn Trả</h5>
+							<p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-lg-3">
+					<div class="intro-wrap">
+						<div class="intro-icon">
+							<i class="fas fa-headset"></i>
+						</div>
+						<div class="intro-content">
+							<h5>Hệ Thống Hỗ Trợ</h5>
+							<p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-lg-3">
+					<div class="intro-wrap">
+						<div class="intro-icon">
+							<i class="fas fa-lock"></i>
+						</div>
+						<div class="intro-content">
+							<h5>Cách Thanh Toán An Toàn</h5>
+							<p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    
+    
+    <!--************************************
+				Footer Start
+		*************************************-->
+		<footer th:replace="~{/web/fragments/footer :: footer}"></footer>
+				
+		<!--************************************
+				Footer End
+		*************************************-->
+		
+		
+    <script src="vendor/bootstrap/jquery-1.12.4.min.js"></script>
+    <script src="vendor/bootstrap/popper.min.js"></script>
+    <script src="vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="vendor/countdown/countdown.min.js"></script>
+    <script src="vendor/niceselect/nice-select.min.js"></script>
+    <script src="vendor/slickslider/slick.min.js"></script>
+    <script src="vendor/venobox/venobox.min.js"></script>
+    <script src="js/nice-select.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/accordion.js"></script>
+    <script src="js/venobox.js"></script>
+    <script src="js/slick.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
