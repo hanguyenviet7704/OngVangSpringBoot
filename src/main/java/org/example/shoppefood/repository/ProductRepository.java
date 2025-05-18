@@ -14,6 +14,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     Page<ProductEntity> findAll(Pageable pageable);
+
     ProductEntity findByProductId(int productId);
 
     @Query("SELECT p FROM ProductEntity p WHERE p.category.categoryId = :categoryId")
@@ -27,8 +28,17 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
     @Query("SELECT p.category.categoryName, COUNT(p) FROM ProductEntity p GROUP BY p.category.categoryName")
     List<Object[]> countProductsByCategory();
+
     @Query("SELECT p.productImage AS productImage, p.productName AS productName, p.price AS productPrice, od.quantity AS productQuantity, (od.quantity * (p.price - p.discount)) AS totalAmount " +
             "FROM OrderDetailEntity od JOIN ProductEntity p ON od.product.productId = p.productId " +
             "WHERE od.order.orderId = :orderId")
     List<Object[]> findPurchasedProductsByOrderId(@Param("orderId") Long orderId);
+
+    @Query("SELECT h FROM ProductEntity h WHERE (:keyword IS NULL OR :keyword = '' OR h.productName LIKE %:keyword%)")
+   List<ProductEntity> findProductByNameLike( @Param("keyword") String keyword);
+
+    List<ProductEntity> findByProductNameContainingIgnoreCase(String productName);
+
+    List<ProductEntity> findByPriceBetween(Double minPrice, Double maxPrice);
 }
+

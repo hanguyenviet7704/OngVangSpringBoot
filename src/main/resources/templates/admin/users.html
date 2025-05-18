@@ -38,32 +38,31 @@
 	<th:block th:replace="~{admin/fragments/navbar :: navbar}"></th:block>
 	
 	<!-- End Navbar -->
-		
-	<div class="main-panel">
-		<div class="content">
-			<div class="page-inner">
-				<div class="page-header">
-					<h4 class="page-title">Quản lý người dùng</h4>
-					<ul class="breadcrumbs">
-						<li class="nav-home">
-							<a href="javascript:void(0);">
-								<i class="flaticon-home"></i>
-							</a>
-						</li>
-						<li class="separator">
-							<i class="flaticon-right-arrow"></i>
-						</li>
-						<li class="nav-item">
-							<a href="javascript:void(0);">Trang chủ</a>
-						</li>
-						<li class="separator">
-							<i class="flaticon-right-arrow"></i>
-						</li>
-						<li class="nav-item">
-							<a href="javascript:void(0);">Quản lý người dùng</a>
-						</li>
-					</ul>
-				</div>
+		<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+					<div class="page-header">
+						<h4 class="page-title">Quản lý người dùng</h4>
+						<ul class="breadcrumbs">
+							<li class="nav-home">
+								<a href="javascript:void(0);">
+									<i class="flaticon-home"></i>
+								</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:void(0);">Trang chủ</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="javascript:void(0);">Quản lý người dùng</a>
+							</li>
+						</ul>
+					</div>
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
@@ -75,47 +74,128 @@
 								<!-- Modal -->
 
 								<div class="table-responsive">
-									<table id="add-row" class="display table table-striped table-hover" >
+									<table id="add-row" class="display table table-striped table-hover">
 										<thead>
-											<tr>
-												<th>id</th>
-												<th>Ảnh đại diện</th>
-												<th>Họ và tên</th>
-												<th>Email</th>
-												<th>Ngày đăng ký</th>
-												<th>Trạng thái</th>
-												<th>Hành động</th>
-											</tr>
+										<tr>
+											<th>id</th>
+											<th>Ảnh đại diện</th>
+											<th>Họ và tên</th>
+											<th>Email</th>
+											<th>Ngày đăng ký</th>
+											<th>Trạng thái</th>
+											<th>Hành động</th>
+										</tr>
 										</thead>
-										
-										<tbody>
-											<tr th:each="item : ${users}">
-											    <td>[[${item.userId}]]</td>
-											    <td>
-											        <img th:src="@{'/loadImage?imageName='+${item.avatar}}" alt="..." class="avatar-img rounded-circle" style="width: 60px">
-											    </td>
-											    <td>[[${item.name}]]</td>
-											    <td>[[${item.email}]]</td>
-											    <td>[[${item.registerDate}]]</td>
-											    <td>[[${item.status?'Đang hoạt động':'Đã khóa'}]]</td>
-											    <td>
-											        <div class="form-button-action">
-											            <!-- Nút khóa tài khoản -->
-											            <form th:action="@{'/admin/users/' + ${item.userId} + '/lock'}" method="post">
-											                <button type="submit" class="btn btn-link btn-danger" data-toggle="tooltip" title="Khóa tài khoản">
-											                    <i class="fa fa-lock"></i>
-											                </button>
-											            </form>
-											                
-											            <!-- Nút mở khóa tài khoản -->
-											            <form th:action="@{'/admin/users/' + ${item.userId} + '/unlock'}" method="post">
-											                <button type="submit" class="btn btn-link btn-success" data-toggle="tooltip" title="Mở khóa tài khoản">
-											                    <i class="fa fa-unlock"></i>
-											                </button>
-											            </form>
-											        </div>
-											    </td>
-											</tr>
+
+										<tbody id ="list">
+										<tr>
+											<td>9</td>
+											<td>
+												<img src="/loadImage?imageName=user.png" alt="..." class="avatar-img rounded-circle" style="width: 60px">
+											</td>
+											<td>Việt Hà</td>
+											<td>vuthanh10235@gmail.com</td>
+											<td>2024-03-17</td>
+											<td>Đang hoạt động</td>
+											<td>
+												<div class="form-button-action">
+													<!-- Nút khóa tài khoản -->
+													<form action="/admin/users/9/lock" method="post">
+														<button type="submit" class="btn btn-link btn-danger" data-toggle="tooltip" title="" data-original-title="Khóa tài khoản">
+															<i class="fa fa-lock"></i>
+														</button>
+													</form>
+
+													<!-- Nút mở khóa tài khoản -->
+													<form action="/admin/users/9/unlock" method="post">
+														<button type="submit" class="btn btn-link btn-success" data-toggle="tooltip" title="" data-original-title="Mở khóa tài khoản">
+															<i class="fa fa-unlock"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>10</td>
+											<td>
+												<img src="/loadImage?imageName=user.png" alt="..." class="avatar-img rounded-circle" style="width: 60px">
+											</td>
+											<td>Nguyễn Việt Hà</td>
+											<td>vuthanh102355@gmail.com</td>
+											<td>2024-04-17</td>
+											<td>Đang hoạt động</td>
+											<td>
+												<div class="form-button-action">
+													<!-- Nút khóa tài khoản -->
+													<form action="/admin/users/10/lock" method="post">
+														<button type="submit" class="btn btn-link btn-danger" data-toggle="tooltip" title="" data-original-title="Khóa tài khoản">
+															<i class="fa fa-lock"></i>
+														</button>
+													</form>
+
+													<!-- Nút mở khóa tài khoản -->
+													<form action="/admin/users/10/unlock" method="post">
+														<button type="submit" class="btn btn-link btn-success" data-toggle="tooltip" title="" data-original-title="Mở khóa tài khoản">
+															<i class="fa fa-unlock"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>11</td>
+											<td>
+												<img src="/loadImage?imageName=user.png" alt="..." class="avatar-img rounded-circle" style="width: 60px">
+											</td>
+											<td>Administrator</td>
+											<td>greentyshop123@gmail.com</td>
+											<td>2024-04-29</td>
+											<td>Đang hoạt động</td>
+											<td>
+												<div class="form-button-action">
+													<!-- Nút khóa tài khoản -->
+													<form action="/admin/users/11/lock" method="post">
+														<button type="submit" class="btn btn-link btn-danger" data-toggle="tooltip" title="" data-original-title="Khóa tài khoản">
+															<i class="fa fa-lock"></i>
+														</button>
+													</form>
+
+													<!-- Nút mở khóa tài khoản -->
+													<form action="/admin/users/11/unlock" method="post">
+														<button type="submit" class="btn btn-link btn-success" data-toggle="tooltip" title="" data-original-title="Mở khóa tài khoản">
+															<i class="fa fa-unlock"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>12</td>
+											<td>
+												<img src="/loadImage?imageName=user.png" alt="..." class="avatar-img rounded-circle" style="width: 60px">
+											</td>
+											<td>Như Quỳnh</td>
+											<td>vuthanh123456666@gmail.com</td>
+											<td>2024-05-09</td>
+											<td>Đang hoạt động</td>
+											<td>
+												<div class="form-button-action">
+													<!-- Nút khóa tài khoản -->
+													<form action="/admin/users/12/lock" method="post">
+														<button type="submit" class="btn btn-link btn-danger" data-toggle="tooltip" title="" data-original-title="Khóa tài khoản">
+															<i class="fa fa-lock"></i>
+														</button>
+													</form>
+
+													<!-- Nút mở khóa tài khoản -->
+													<form action="/admin/users/12/unlock" method="post">
+														<button type="submit" class="btn btn-link btn-success" data-toggle="tooltip" title="" data-original-title="Mở khóa tài khoản">
+															<i class="fa fa-unlock"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+										</tr>
 
 										</tbody>
 									</table>
@@ -125,35 +205,39 @@
 					</div>
 				</div>
 			</div>
-		<footer class="footer">
-			<div class="container-fluid">
-				<nav class="pull-left">
-					<ul class="nav">
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:void(0);">
-								GREENTY-SHOP
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:void(0);">
-								Help
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="javascript:void(0);">
-								Licenses
-							</a>
-						</li>
-					</ul>
-				</nav>
-				<div class="copyright ml-auto">
-					2021, made with <i class="fa fa-heart heart text-danger"></i> by <a href="javascript:void(0);">GREENY-SHOP</a>
-				</div>				
-			</div>
-		</footer>
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav class="pull-left">
+						<ul class="nav">
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:void(0);">
+									GREENTY-SHOP
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:void(0);">
+									Help
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:void(0);">
+									Licenses
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="copyright ml-auto">
+						2021, made with <i class="fa fa-heart heart text-danger"></i> by <a href="javascript:void(0);">GREENY-SHOP</a>
+					</div>
+				</div>
+			</footer>
+		</div>
 	</div>
-		
-	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	<script th:src="@{/jquery/admin/user.js}"></script>
+
 	<!--   Core JS Files   -->
 	<script src="/assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="/assets/js/core/popper.min.js"></script>
@@ -170,53 +254,6 @@
 	<script src="/assets/js/atlantis.min.js"></script>
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="/assets/js/setting-demo2.js"></script>
-	<script >
-		$(document).ready(function() {
-			$('#basic-datatables').DataTable({
-			});
 
-			$('#multi-filter-select').DataTable( {
-				"pageLength": 5,
-				initComplete: function () {
-					this.api().columns().every( function () {
-						var column = this;
-						var select = $('<select class="form-control"><option value=""></option></select>')
-						.appendTo( $(column.footer()).empty() )
-						.on( 'change', function () {
-							var val = $.fn.dataTable.util.escapeRegex(
-								$(this).val()
-								);
-
-							column
-							.search( val ? '^'+val+'$' : '', true, false )
-							.draw();
-						} );
-
-						column.data().unique().sort().each( function ( d, j ) {
-							select.append( '<option value="'+d+'">'+d+'</option>' )
-						} );
-					} );
-				}
-			});
-
-			// Add Row
-			/* $('#add-row').DataTable({
-				"pageLength": 5,
-			});
-
-			var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-			$('#addRowButton').click(function() {
-				$('#add-row').dataTable().fnAddData([
-					$("#addName").val(),
-					$("#addPosition").val(),
-					$("#addOffice").val(),
-					action
-					]);
-				$('#addRowModal').modal('hide');
-
-			}); */
-		});
-	</script>
 </body>
 </html>

@@ -93,5 +93,9 @@ public class ProductServiceImpl implements ProductService {
         return purchasedOrderDTOS;
     }
 
+    public List<ProductEntity> findProductsByName(String name) {
+        return productRepository.findProductByNameLike(name);
+    }
+
 
 }

@@ -9,6 +9,6 @@ import java.util.List;
 public interface OrderMapper {
 
     List<OrderDTO> toDTOs(List<OrderEntity> entities);
-
+    OrderEntity toEntity(OrderDTO dto);
     List<OrderEntity> toEntities(List<OrderDTO> dtos);
 }

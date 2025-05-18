@@ -3,6 +3,7 @@ package org.example.shoppefood.service;
 import org.example.shoppefood.dto.ProductDTO;
 import org.example.shoppefood.dto.output.PurchasedOrderDTO;
 import org.example.shoppefood.dto.responsePage.ResponsePage;
+import org.example.shoppefood.entity.ProductEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +23,7 @@ public interface ProductService {
    List<Object[]> getCategoryAndCountProduct();
 
    List<PurchasedOrderDTO> findPurchasedProductsByOrderId(Long orderId);
+
+   public List<ProductEntity> findProductsByName(String name) ;
+
 }
