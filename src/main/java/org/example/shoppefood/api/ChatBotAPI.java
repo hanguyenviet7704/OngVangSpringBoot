@@ -28,7 +28,7 @@ public class ChatBotAPI {
                 return ResponseEntity.badRequest()
                     .body(new ChatResponse("Vui lòng nhập tin nhắn."));
             }
-
+           // ngo vua thoi
             // Tạo một ID tạm thời cho user nếu chưa có
             String userId = request.getUserId();
             if (!StringUtils.hasText(userId)) {
