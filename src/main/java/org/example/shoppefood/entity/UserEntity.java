@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
 
 @SuppressWarnings("serial")
@@ -32,6 +33,6 @@ public class UserEntity implements Serializable{
 		joinColumns = @JoinColumn(name = "user_id",
 		referencedColumnName = "userId"),
 		inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-	private Collection<RoleEntity> roles;
+	private Collection<RoleEntity> roles = new HashSet<>();
 
 }

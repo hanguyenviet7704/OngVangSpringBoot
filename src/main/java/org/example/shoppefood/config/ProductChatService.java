@@ -1,19 +1,24 @@
 package org.example.shoppefood.config;
 
-
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
-import com.google.cloud.dialogflow.v2.Intent;
 import com.google.cloud.dialogflow.v2.QueryResult;
+import com.google.protobuf.Value;
 import org.example.shoppefood.entity.ProductEntity;
 import org.example.shoppefood.repository.ProductRepository;
 import org.example.shoppefood.service.impl.DialogflowService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductChatService {
+    private static final Logger logger = LoggerFactory.getLogger(ProductChatService.class);
+    private static final int MAX_PRODUCTS_TO_SHOW = 10;
 
     @Autowired
     private DialogflowService dialogflowService;
@@ -21,98 +26,168 @@ public class ProductChatService {
     @Autowired
     private ProductRepository productRepository;
 
-    public String processMessage(String message) {
+    public String processMessage(String message, String userId) {
+        if (!StringUtils.hasText(message)) {
+            return "Xin lỗi, tôi không hiểu yêu cầu của bạn. Vui lòng nhập lại.";
+        }
+
         try {
-            // Gửi message tới Dialogflow để phân tích
-            DetectIntentResponse response = dialogflowService.detectIntent(message);
+            DetectIntentResponse response = dialogflowService.detectIntent(message, userId);
             QueryResult queryResult = response.getQueryResult();
-
-            // Lấy intent được phát hiện
             String intent = queryResult.getIntent().getDisplayName();
+            Map<String, Value> parameters = queryResult.getParameters().getFieldsMap();
 
-            // Xử lý dựa trên intent
+            logger.debug("Processing intent: {} for user: {}", intent, userId);
+
             switch (intent) {
                 case "ask_product_price":
-                    // Lấy tên sản phẩm từ tham số
-                    String productName = queryResult.getParameters().getFieldsOrDefault(
-                            "product",
-                            com.google.protobuf.Value.getDefaultInstance()).getStringValue();
-
-                    if (productName != null && !productName.isEmpty()) {
-                        return getProductPriceResponse(productName);
-                    } else {
-                        return "Bạn muốn biết giá của sản phẩm nào?";
-                    }
-
+                    return handleProductPriceQuery(parameters);
                 case "ask_price_range":
-                    // Xử lý hỏi về khoảng giá
-                    double minPrice = queryResult.getParameters().getFieldsOrDefault(
-                            "min_price",
-                            com.google.protobuf.Value.getDefaultInstance()).getNumberValue();
-                    double maxPrice = queryResult.getParameters().getFieldsOrDefault(
-                            "max_price",
-                            com.google.protobuf.Value.getDefaultInstance()).getNumberValue();
-
-                    return getProductsByPriceRange(minPrice, maxPrice);
-
-                default:
-                    // Sử dụng phản hồi mặc định từ Dialogflow
+                    return handlePriceRangeQuery(parameters);
+                case "ask_product_info":
+                    return handleProductInfoQuery(parameters);
+                case "ask_promotion":
+                    return handlePromotionQuery();
+                case "ask_shipping":
+                    return handleShippingQuery();
+                case "ask_order_status":
+                    return handleOrderStatusQuery(parameters);
+                case "ask_product_by_category":
+                    return handleProductByCategory(parameters);
+                case "ask_address":
+                    return handleAddress();
+                    default:
                     return queryResult.getFulfillmentText();
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            return "Xin lỗi, tôi không thể xử lý yêu cầu của bạn lúc này.";
+            logger.error("Error processing message for user {}: {}", userId, e.getMessage(), e);
+            return "Xin lỗi, đã có lỗi xảy ra khi xử lý yêu cầu của bạn. Vui lòng thử lại sau.";
         }
     }
+    private String handleAddress(){
+        return "Địa chỉ cửa hàng ở thôn Bùi Xá , Xã Nhân Quyền , Huyện Bình Giang , Tỉnh Hải Dương";
+    }
+    private String handleProductPriceQuery(Map<String, Value> parameters) {
+        String productName = getStringParameter(parameters, "product");
+        if (!StringUtils.hasText(productName)) {
+            return "Bạn muốn biết giá của sản phẩm nào?";
+        }
 
-    private String getProductPriceResponse(String productName) {
         List<ProductEntity> products = productRepository.findByProductNameContainingIgnoreCase(productName);
-
-        if (products.isEmpty()) {
-            return "Xin lỗi, chúng tôi không tìm thấy sản phẩm có tên \"" + productName + "\".";
-        } else if (products.size() == 1) {
-            ProductEntity product = products.get(0);
-            return "Giá của sản phẩm \"" + product.getProductName() + "\" là "
-                    + formatPrice(product.getPrice()) + " VNĐ.";
-        } else {
-            StringBuilder response = new StringBuilder("Chúng tôi có các sản phẩm sau phù hợp với tìm kiếm của bạn:\n");
-
-            for (int i = 0; i < Math.min(products.size(), 5); i++) {
-                ProductEntity product = products.get(i);
-                response.append("- ").append(product.getProductName())
-                        .append(": ").append(formatPrice(product.getPrice())).append(" VNĐ\n");
-            }
-
-            if (products.size() > 5) {
-                response.append("... và ").append(products.size() - 5).append(" sản phẩm khác.");
-            }
-
-            return response.toString();
-        }
+        return formatProductListResponse(products, "Giá của sản phẩm (/1kg)", productName);
     }
 
-    private String getProductsByPriceRange(double minPrice, double maxPrice) {
-        List<ProductEntity> products = productRepository.findByPriceBetween(minPrice, maxPrice);
+    private String handlePriceRangeQuery(Map<String, Value> parameters) {
+        double minPrice = getNumberParameter(parameters, "min_price");
+        double maxPrice = getNumberParameter(parameters, "max_price");
 
-        if (products.isEmpty()) {
-            return "Xin lỗi, chúng tôi không tìm thấy sản phẩm nào trong khoảng giá từ "
-                    + formatPrice(minPrice) + " đến " + formatPrice(maxPrice) + " VNĐ.";
-        } else {
-            StringBuilder response = new StringBuilder("Các sản phẩm trong khoảng giá từ "
-                    + formatPrice(minPrice) + " đến " + formatPrice(maxPrice) + " VNĐ:\n");
-
-            for (int i = 0; i < Math.min(products.size(), 5); i++) {
-                ProductEntity product = products.get(i);
-                response.append("- ").append(product.getProductName())
-                        .append(": ").append(formatPrice(product.getPrice())).append(" VNĐ\n");
-            }
-
-            if (products.size() > 5) {
-                response.append("... và ").append(products.size() - 5).append(" sản phẩm khác.");
-            }
-
-            return response.toString();
+        if (minPrice < 0 || maxPrice < 0 || minPrice > maxPrice) {
+            return "Xin lỗi, khoảng giá không hợp lệ. Vui lòng nhập lại.";
         }
+
+        List<ProductEntity> products = productRepository.findByPriceBetween(minPrice, maxPrice);
+        return formatProductListResponse(products, "Các sản phẩm trong khoảng giá", 
+            String.format("từ %s đến %s VNĐ", formatPrice(minPrice), formatPrice(maxPrice)));
+    }
+
+    private String handleProductInfoQuery(Map<String, Value> parameters) {
+        String productName = getStringParameter(parameters, "product");
+        if (!StringUtils.hasText(productName)) {
+            return "Bạn muốn biết thông tin về sản phẩm nào?";
+        }
+
+        List<ProductEntity> products = productRepository.findByProductNameContainingIgnoreCase(productName);
+        if (products.isEmpty()) {
+            return "Xin lỗi, không tìm thấy sản phẩm \"" + productName + "\".";
+        }
+
+        StringBuilder response = new StringBuilder();
+        for (int i = 0; i < Math.min(products.size(), MAX_PRODUCTS_TO_SHOW); i++) {
+            ProductEntity product = products.get(i);
+            response.append(String.format("- %s:\n", product.getProductName()))
+                   .append(String.format("  + Giá: %s VNĐ\n", formatPrice(product.getPrice())))
+                   .append(String.format("  + Mô tả: %s\n", product.getDescription()))
+                   .append(String.format("  + Danh mục: %s\n", product.getCategory().getCategoryName()));
+        }
+
+        if (products.size() > MAX_PRODUCTS_TO_SHOW) {
+            response.append(String.format("\n... và %d sản phẩm khác.", products.size() - MAX_PRODUCTS_TO_SHOW));
+        }
+
+        return response.toString();
+    }
+
+    private String handlePromotionQuery() {
+        return "Hiện tại chúng tôi có các chương trình khuyến mãi sau:\n" +
+               "1. Giảm giá 20% cho đơn hàng đầu tiên\n" +
+               "2. Miễn phí vận chuyển cho đơn hàng trên 500.000 VNĐ\n" +
+               "3. Tặng quà cho khách hàng thân thiết";
+    }
+
+    private String handleShippingQuery() {
+        return "Thông tin vận chuyển:\n" +
+               "1. Miễn phí vận chuyển cho đơn hàng trên 500.000 VNĐ\n" +
+               "2. Phí vận chuyển 30.000 VNĐ cho đơn hàng dưới 500.000 VNĐ\n" +
+               "3. Thời gian giao hàng: 2-3 ngày làm việc";
+    }
+
+    private String handleOrderStatusQuery(Map<String, Value> parameters) {
+        String orderId = getStringParameter(parameters, "order_id");
+        if (!StringUtils.hasText(orderId)) {
+            return "Vui lòng cung cấp mã đơn hàng để kiểm tra trạng thái.";
+        }
+        return "Để kiểm tra trạng thái đơn hàng, vui lòng đăng nhập vào tài khoản của bạn.";
+    }
+    private String handleProductByCategory(Map<String, Value> parameters){
+        String category = parameters.get("category").getStringValue();
+        if (!StringUtils.hasText(category)) {
+            return "Bạn muốn biết thể loại gì shop tôi cung cấp";
+        }
+        List<ProductEntity> products = productRepository.searchByCategoryName(category);
+        return formatProductListResponseByCategory(products,"Chúng tôi có các sản phẩm \n", category);
+    }
+    private String formatProductListResponseByCategory(List<ProductEntity> products, String prefix, String searchTerm) {
+        if (products.isEmpty()) {
+            return String.format("Xin lỗi, không tìm thấy sản phẩm phù hợp với loại  \"%s\".", searchTerm);
+        }
+
+        StringBuilder response = new StringBuilder();
+        response.append(prefix);
+        for (ProductEntity product : products) {
+            response.append(product.getProductName()).append(",");
+        }
+        if (response.length() > 2) {
+            response.deleteCharAt(response.length() - 1);
+        }
+        return response.toString();
+    }
+    private String formatProductListResponse(List<ProductEntity> products, String prefix, String searchTerm) {
+        if (products.isEmpty()) {
+            return String.format("Xin lỗi, không tìm thấy sản phẩm phù hợp với \"%s\".", searchTerm);
+        }
+
+        StringBuilder response = new StringBuilder(String.format("%s \"%s\":\n", prefix, searchTerm));
+        for (int i = 0; i < Math.min(products.size(), MAX_PRODUCTS_TO_SHOW); i++) {
+            ProductEntity product = products.get(i);
+            response.append(String.format("- %s: %s VNĐ\n", 
+                product.getProductName(), formatPrice(product.getPrice())));
+        }
+
+        if (products.size() > MAX_PRODUCTS_TO_SHOW) {
+            response.append(String.format("... và %d sản phẩm khác.", products.size() - MAX_PRODUCTS_TO_SHOW));
+        }
+
+        return response.toString();
+    }
+
+    private String getStringParameter(Map<String, Value> parameters, String key) {
+        Value value = parameters.get(key);
+        return value != null ? value.getStringValue() : "";
+    }
+
+    private double getNumberParameter(Map<String, Value> parameters, String key) {
+        Value value = parameters.get(key);
+        return value != null ? value.getNumberValue() : 0.0;
     }
 
     private String formatPrice(double price) {

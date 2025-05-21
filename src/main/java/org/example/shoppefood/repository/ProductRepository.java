@@ -26,6 +26,9 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Query("SELECT p FROM ProductEntity p WHERE (:categoryId IS NULL OR p.category.categoryId = :categoryId)")
     Page<ProductEntity> searchByCategoryId(Pageable pageable, @Param("categoryId") Long categoryId);
 
+    @Query("SELECT p FROM ProductEntity p WHERE (:categoryName IS NULL OR p.category.categoryName = :categoryName)")
+    List<ProductEntity> searchByCategoryName( @Param("categoryName") String categoryName);
+
     @Query("SELECT p.category.categoryName, COUNT(p) FROM ProductEntity p GROUP BY p.category.categoryName")
     List<Object[]> countProductsByCategory();
 
