@@ -1,19 +1,24 @@
 package org.example.shoppefood.entity;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-
+@Entity
+@Table(name = "cart_items")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class CartItemEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	private Long id;
-	private String name;
-	private double unitPrice;
-	private int quantity;
-	private double totalPrice;
-	private ProductEntity product;
-}
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private CartEntity cart;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private ProductEntity product;
+
+    private int quantity;
+    private double price;
+} 

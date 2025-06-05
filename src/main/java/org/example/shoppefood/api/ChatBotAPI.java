@@ -1,10 +1,8 @@
 package org.example.shoppefood.api;
 
-import org.example.shoppefood.config.ProductChatService;
+import org.example.shoppefood.service.ProductChatService;
 import org.example.shoppefood.dto.chatbot.ChatRequest;
 import org.example.shoppefood.dto.chatbot.ChatResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -16,7 +14,6 @@ import java.util.UUID;
 @RequestMapping("/api/chatbot")
 @CrossOrigin("*") // Đảm bảo có thể gọi API từ localhost frontend
 public class ChatBotAPI {
-    private static final Logger logger = LoggerFactory.getLogger(ChatBotAPI.class);
 
     @Autowired
     private ProductChatService productChatService;
@@ -28,7 +25,7 @@ public class ChatBotAPI {
                 return ResponseEntity.badRequest()
                     .body(new ChatResponse("Vui lòng nhập tin nhắn."));
             }
-           // ngo vua thoi
+
             // Tạo một ID tạm thời cho user nếu chưa có
             String userId = request.getUserId();
             if (!StringUtils.hasText(userId)) {

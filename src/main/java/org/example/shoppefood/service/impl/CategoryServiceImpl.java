@@ -36,4 +36,23 @@ public class CategoryServiceImpl implements CategoryService {
 
         return responsePage;
     }
+
+    @Override
+    public CategoryDTO save(CategoryDTO categoryDTO) {
+        CategoryEntity categoryEntity = categoryMapper.dtoToEntity(categoryDTO);
+        categoryEntity = categoryRepository.save(categoryEntity);
+        return categoryMapper.entityToDto(categoryEntity);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public CategoryDTO findById(Long id) {
+        CategoryEntity categoryEntity = categoryRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Không tìm thấy thể loại với id: " + id));
+        return categoryMapper.entityToDto(categoryEntity);
+    }
 }

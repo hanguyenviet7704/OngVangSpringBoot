@@ -11,4 +11,10 @@ import java.util.List;
 
 public interface CategoryService {
     ResponsePage<List<CategoryDTO>> getAllCategory(Pageable pageable);
+    
+    CategoryDTO save(CategoryDTO categoryDTO);
+    
+    void deleteById(Long id);
+    
+    CategoryDTO findById(Long id);
 }

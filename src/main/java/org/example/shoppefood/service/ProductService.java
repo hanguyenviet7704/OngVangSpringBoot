@@ -6,13 +6,14 @@ import org.example.shoppefood.dto.responsePage.ResponsePage;
 import org.example.shoppefood.entity.ProductEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 @Service
 public interface ProductService {
    public ResponsePage<List<ProductDTO>> getAllProducts(Pageable pageable);
 
-   public ProductDTO getProductById(int id);
+   public ProductDTO getProductById(Long id);
 
    public ResponsePage<List<ProductDTO>> getProductsByCategoryId(Long categoryId, Pageable pageable);
 
@@ -26,4 +27,7 @@ public interface ProductService {
 
    public List<ProductEntity> findProductsByName(String name) ;
 
+   ProductDTO save(ProductDTO productDTO, MultipartFile file);
+
+   void deleteById(Long id);
 }

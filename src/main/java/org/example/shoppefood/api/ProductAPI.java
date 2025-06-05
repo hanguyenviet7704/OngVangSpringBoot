@@ -8,13 +8,16 @@ import org.example.shoppefood.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class ProductAPI {
     @Autowired
      private ProductService productService;
+
     @GetMapping("/products")
        public ResponsePage<List<ProductDTO>> getProducts(
                @RequestParam (defaultValue = "0") int page,
@@ -24,8 +27,8 @@ public class ProductAPI {
         return productService.getAllProducts(pageable);
     }
    @GetMapping ("/product/{id}")
-    public ProductDTO getProductById(@PathVariable int id) {
-        return productService.getProductById(id);
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.getProductById(id));
    }
    @GetMapping("/products/{id}")
     public ResponsePage<List<ProductDTO>> getProductsByCategoryId (
@@ -82,4 +85,32 @@ public class ProductAPI {
         }
     }
 
+    @PostMapping("/products")
+    public ResponseEntity<ProductDTO> createProduct(
+            @RequestPart("productDTO") ProductDTO productDTO,
+            @RequestPart("file") MultipartFile file)
+    {
+        // Xử lý file upload và lưu đường dẫn vào productDTO trước khi lưu vào DB
+        // Cần thêm logic lưu file ở đây hoặc trong service
+        // Ví dụ: String imageUrl = saveFile(file); productDTO.setImageUrl(imageUrl);
+        return ResponseEntity.ok(productService.save(productDTO, file)); // Cần cập nhật ProductService để nhận MultipartFile
+    }
+
+    @PutMapping("/products/{id}")
+    public ResponseEntity<ProductDTO> updateProduct(
+            @PathVariable Long id,
+            @RequestPart("productDTO") ProductDTO productDTO,
+            @RequestPart(value = "file", required = false) MultipartFile file)
+    {
+        productDTO.setProductId(id);
+        // Xử lý file upload nếu có file mới được cung cấp
+        return ResponseEntity.ok(productService.save(productDTO, file)); // Cần cập nhật ProductService để nhận MultipartFile
+    }
+
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        productService.deleteById(id);
+        return ResponseEntity.ok().build();
+
+    }
 }

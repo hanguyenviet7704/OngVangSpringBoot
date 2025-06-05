@@ -2,7 +2,7 @@ $(document).ready(function () {
     fetchCategories();
 });
 // Fetch all categories
-function fetchCategories(page = 0, size = 5) {
+function fetchCategories(page = 0, size = 10) {
     $.ajax({
         url: "http://localhost:8081/api/users",
         type: "GET",
@@ -46,12 +46,7 @@ function renderUsers(users) {
                 <td>${user.email}</td>
                 <td>${user.registerDate}</td>
                 <td class="${statusClass}">${statusText}</td>
-                <td>
-                    <div class="form-button-action">
-                        ${lockForm}
-                        ${unlockForm}
-                    </div>
-                </td>
+               
             </tr>
         `;
         $('#list').append(row);

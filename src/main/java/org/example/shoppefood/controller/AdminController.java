@@ -38,5 +38,8 @@ public class AdminController {
         // Có thể render chung 1 view, rồi phân biệt dữ liệu theo "kinds"
         return "/admin/statistical";
     }
-
+    @GetMapping("/editCategory/{id}")
+    public String editCategory(@PathVariable Long id) {
+        return "admin/editCategory";
+    }
 }

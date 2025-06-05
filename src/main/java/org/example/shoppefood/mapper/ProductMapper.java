@@ -12,9 +12,12 @@ import java.util.List;
 public interface ProductMapper {
 
    @Mapping(source = "category.categoryId", target = "categoryId") // Chuyển categoryId từ CategoryEntity
+   @Mapping(source = "category.categoryName", target = "categoryName") // Map categoryName từ CategoryEntity
+   @Mapping(source = "enteredDate", target = "enteredDate") // Add mapping for enteredDate
    ProductDTO entityToDto(ProductEntity productEntity);
 
    List<ProductDTO> entityToDtoList(List<ProductEntity> productEntities);
    @Mapping(source = "categoryId", target = "category.categoryId") // Chuyển categoryId về CategoryEntity
+   @Mapping(source = "enteredDate", target = "enteredDate") // Add mapping for enteredDate
    ProductEntity dtoToEntity(ProductDTO productDTO);
 }

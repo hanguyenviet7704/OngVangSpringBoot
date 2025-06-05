@@ -1,4 +1,4 @@
-package org.example.shoppefood.config;
+package org.example.shoppefood.service;
 
 import com.google.cloud.dialogflow.v2.DetectIntentResponse;
 import com.google.cloud.dialogflow.v2.QueryResult;
@@ -36,8 +36,6 @@ public class ProductChatService {
             QueryResult queryResult = response.getQueryResult();
             String intent = queryResult.getIntent().getDisplayName();
             Map<String, Value> parameters = queryResult.getParameters().getFieldsMap();
-
-            logger.debug("Processing intent: {} for user: {}", intent, userId);
 
             switch (intent) {
                 case "ask_product_price":

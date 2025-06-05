@@ -11,6 +11,8 @@ import org.example.shoppefood.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,15 +31,22 @@ public class UserServiceImpl implements UserService {
     public ResponsePage<List<UserDTO>> getAllUsers(Pageable pageable) {
         Page<UserEntity> userPage = userRepository.findAll(pageable);
         List<UserDTO> userDTOs = userMapper.toListDto(userPage.getContent());
-
         ResponsePage<List<UserDTO>> responsePage = new ResponsePage<>();
         responsePage.setContent(userDTOs);
         responsePage.setPageNumber(userPage.getNumber());
         responsePage.setPageSize(userPage.getSize());
         responsePage.setTotalElements(userPage.getTotalElements());
         responsePage.setTotalPages(userPage.getTotalPages());
-
         return responsePage;
+    }
+     @Override
+     public Long getCurrentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof CustomUserDetailsService.CustomUserDetails) {
+            CustomUserDetailsService.CustomUserDetails userDetails = (CustomUserDetailsService.CustomUserDetails) authentication.getPrincipal();
+            return userDetails.getUserId(); // Lấy ID người dùng
+        }
+        return null;
     }
 
 }

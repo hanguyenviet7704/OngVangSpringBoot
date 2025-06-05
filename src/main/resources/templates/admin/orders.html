@@ -26,21 +26,47 @@
 	<link rel="stylesheet" href="/assets/css/demo.css">
     <link rel="stylesheet" href="css/main.css" />
     
-    <style type="text/css">
-    .product-add1 {
-		  font-size: 15px;
-		  padding: 8px 10px;
-		  border-radius: 6px;
-		  text-align: center;
-		  background-color: #1572e8;
-    }
-    
-     .product-add1 a {
-     	  padding: 5px 15px;
-		  text-align: center;
-		  color: white;
-		  text-decoration: none;
-    }
+    <style>
+        .product-add1 {
+            font-size: 15px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            text-align: center;
+            background-color: #1572e8;
+        }
+
+        .product-add1 a {
+            padding: 5px 15px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+        }
+
+        .badge {
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge-warning {
+            background-color: #ffc107;
+            color: #000;
+        }
+
+        .badge-info {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .badge-success {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .badge-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -87,119 +113,82 @@
 							<div class="card-header">
 								<div class="d-flex align-items-center" style="justify-content: space-between;">
 									<h4 class="card-title" style="text-decoration: underline;">Quản lý đơn hàng</h4>
-
-									<div class="product-add1">
-										<a href="/admin/export" style="padding-left: 20px;">
-											<i class="fas fa-save" style="padding-right: 8px"></i><span>Tạo báo cáo</span>
-										</a>
-									</div>
-
 								</div>
 							</div>
 
+							<div class="alert alert-success" th:if="${message}" th:text="${message}"></div>
+
 							<div class="card-body">
 								<div class="table-responsive">
-									<div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="add-row_length"><label>Show <select name="add-row_length" aria-controls="add-row" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="add-row_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="add-row"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="add-row" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="add-row_info">
+									<div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="add-row_length"><label>Show <select name="add-row_length" aria-controls="add-row" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="add-row_filter" class="dataTables_filter"></div></div></div><div class="row"><div class="col-sm-12"><table id="add-row" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="add-row_info">
 										<thead>
-										<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Mã đơn hàng: activate to sort column descending" style="width: 98.9688px;">Mã đơn hàng</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Tên khách hàng: activate to sort column ascending" style="width: 115.516px;">Tên khách hàng</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Số ĐT: activate to sort column ascending" style="width: 161.062px;">Số ĐT</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Ngày đặt hàng: activate to sort column ascending" style="width: 107.172px;">Ngày đặt hàng</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Địa chỉ: activate to sort column ascending" style="width: 232.422px;">Địa chỉ</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Tổng tiền: activate to sort column ascending" style="width: 75.9219px;">Tổng tiền</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Chi tiết đơn hàng: activate to sort column ascending" style="width: 143.25px;">Chi tiết đơn hàng</th><th style="width: 92.6875px;" class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Hành động: activate to sort column ascending">Hành động</th></tr>
+										<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Mã đơn hàng: activate to sort column descending" style="width: 98.9688px;">Mã đơn hàng</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Tên khách hàng: activate to sort column ascending" style="width: 115.516px;">Mã khách hàng</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Số ĐT: activate to sort column ascending" style="width: 161.062px;">Số điện thoại</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Ngày đặt hàng: activate to sort column ascending" style="width: 107.172px;">Ngày đặt hàng</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Địa chỉ: activate to sort column ascending" style="width: 232.422px;">Địa chỉ</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Tổng tiền: activate to sort column ascending" style="width: 75.9219px;">Tổng tiền</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Chi tiết đơn hàng: activate to sort column ascending" style="width: 143.25px;">Chi tiết đơn hàng</th><th style="width: 92.6875px;" class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Hành động: activate to sort column ascending">Hành động</th></tr>
 										</thead>
 										<tfoot>
-										<tr><th rowspan="1" colspan="1">Mã đơn hàng</th><th rowspan="1" colspan="1">Tên khách hàng</th><th rowspan="1" colspan="1">Số ĐT</th><th rowspan="1" colspan="1">Ngày đặt hàng</th><th rowspan="1" colspan="1">Địa chỉ</th><th rowspan="1" colspan="1">Tổng tiền</th><th rowspan="1" colspan="1">Chi tiết đơn hàng</th><th style="width: 10%" rowspan="1" colspan="1">Hành động</th></tr>
+										<tr><th rowspan="1" colspan="1">Mã đơn hàng</th><th rowspan="1" colspan="1">Mã khách hàng</th><th rowspan="1" colspan="1">Số điện thoại</th><th rowspan="1" colspan="1">Ngày đặt hàng</th><th rowspan="1" colspan="1">Địa chỉ</th><th rowspan="1" colspan="1">Tổng tiền</th><th rowspan="1" colspan="1">Chi tiết đơn hàng</th><th style="width: 10%" rowspan="1" colspan="1">Hành động</th></tr>
 										</tfoot>
 										<tbody id="list"></tbody>
 									</table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="add-row_info" role="status" aria-live="polite">Showing 1 to 5 of 14 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="add-row_paginate"><ul id="custom-pagination" class="pagination"><li class="paginate_button page-item previous disabled" id="add-row_previous"><a href="#" aria-controls="add-row" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="add-row" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="add-row" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="add-row" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="add-row_next"><a href="#" aria-controls="add-row" data-dt-idx="4" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
 
-									<!-- Xác nhận đơn -->
-									<script>
-										function showConfigConfirmModalDialog(id) {
-											$('#idConfirm').text(id);
-											$('#yesOptionConfirm').attr('href', '/admin/order/confirm/' + id);
-											$('#configmationConfirmId').modal('show');
-										}
-									</script>
 
 									<!-- Modal -->
-									<div class="modal" id="configmationConfirmId">
+									<div class="modal fade" id="configmationConfirmId" tabindex="-1" role="dialog">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title">Xác nhận</h5>
+													<h5 class="modal-title">Xác nhận đơn hàng</h5>
 													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">×</span>
+														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
 												<div class="modal-body">
-													<p>
-														Bạn có muốn xác nhận đơn hàng có mã "<span id="idConfirm"></span>" ?
-													</p>
+													<p>Bạn có chắc chắn muốn xác nhận đơn hàng có mã "<span id="idConfirm"></span>"?</p>
 												</div>
 												<div class="modal-footer">
-													<a id="yesOptionConfirm" type="button" class="btn btn-info">Có</a>
-													<button type="button" class="btn btn-danger" data-dismiss="modal">Không</button>
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+													<a id="yesOptionConfirm" class="btn btn-primary">Xác nhận</a>
 												</div>
 											</div>
 										</div>
 									</div>
 
-									<!-- Huỷ đơn hàng -->
-									<script>
-										function showConfigCancelModalDialog(id) {
-											$('#idCancel').text(id);
-											$('#yesOptionCanCel').attr('href', '/admin/order/cancel/' + id);
-											$('#configmationCancelId').modal('show');
-										}
-									</script>
 
 									<!-- Modal -->
-									<div class="modal" id="configmationCancelId">
+									<div class="modal fade" id="configmationCancelId" tabindex="-1" role="dialog">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title">Xác nhận</h5>
+													<h5 class="modal-title">Hủy đơn hàng</h5>
 													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">×</span>
+														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
 												<div class="modal-body">
-													<p>
-														Bạn có muốn huỷ đơn hàng có mã "<span id="idCancel"></span>" ?
-													</p>
+													<p>Bạn có chắc chắn muốn hủy đơn hàng có mã "<span id="idCancel"></span>"?</p>
 												</div>
 												<div class="modal-footer">
-													<a id="yesOptionCanCel" type="button" class="btn btn-info">Có</a>
-													<button type="button" class="btn btn-danger" data-dismiss="modal">Không</button>
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+													<a id="yesOptionCanCel" class="btn btn-danger">Hủy đơn</a>
 												</div>
 											</div>
 										</div>
 									</div>
-
-									<!-- Xác nhận đã giao -->
-									<script>
-										function showConfigDeliveredModalDialog(id) {
-											$('#idDelivered').text(id);
-											$('#yesOptionDelivered').attr('href', '/admin/order/delivered/' + id);
-											$('#configmationDeliveredId').modal('show');
-										}
-									</script>
-
 									<!-- Modal -->
-									<div class="modal" id="configmationDeliveredId">
+									<div class="modal fade" id="configmationDeliveredId" tabindex="-1" role="dialog">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title">Xác nhận</h5>
+													<h5 class="modal-title">Xác nhận đã giao</h5>
 													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">×</span>
+														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
 												<div class="modal-body">
-													<p>
-														Bạn có muốn xác nhận đơn hàng có mã "<span id="idDelivered"></span>" ?
-													</p>
+													<p>Bạn có chắc chắn muốn xác nhận đơn hàng có mã "<span id="idDelivered"></span>" đã được giao?</p>
 												</div>
 												<div class="modal-footer">
-													<a id="yesOptionDelivered" type="button" class="btn btn-info">Có</a>
-													<button type="button" class="btn btn-danger" data-dismiss="modal">Không</button>
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+													<a id="yesOptionDelivered" class="btn btn-success">Xác nhận</a>
 												</div>
 											</div>
 										</div>
@@ -237,53 +226,6 @@
 	<script src="/assets/js/atlantis.min.js"></script>
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="/assets/js/setting-demo2.js"></script>
-<!--	<script >-->
-<!--		$(document).ready(function() {-->
-<!--			$('#basic-datatables').DataTable({-->
-<!--			});-->
 
-<!--			$('#multi-filter-select').DataTable( {-->
-<!--				"pageLength": 5,-->
-<!--				initComplete: function () {-->
-<!--					this.api().columns().every( function () {-->
-<!--						var column = this;-->
-<!--						var select = $('<select class="form-control"><option value=""></option></select>')-->
-<!--						.appendTo( $(column.footer()).empty() )-->
-<!--						.on( 'change', function () {-->
-<!--							var val = $.fn.dataTable.util.escapeRegex(-->
-<!--								$(this).val()-->
-<!--								);-->
-
-<!--							column-->
-<!--							.search( val ? '^'+val+'$' : '', true, false )-->
-<!--							.draw();-->
-<!--						} );-->
-
-<!--						column.data().unique().sort().each( function ( d, j ) {-->
-<!--							select.append( '<option value="'+d+'">'+d+'</option>' )-->
-<!--						} );-->
-<!--					} );-->
-<!--				}-->
-<!--			});-->
-
-<!--			// Add Row-->
-<!--			$('#add-row').DataTable({-->
-<!--				"pageLength": 5,-->
-<!--			});-->
-
-<!--			var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';-->
-
-<!--			$('#addRowButton').click(function() {-->
-<!--				$('#add-row').dataTable().fnAddData([-->
-<!--					$("#addName").val(),-->
-<!--					$("#addPosition").val(),-->
-<!--					$("#addOffice").val(),-->
-<!--					action-->
-<!--					]);-->
-<!--				$('#addRowModal').modal('hide');-->
-
-<!--			});-->
-<!--		});-->
-<!--	</script>-->
 </body>
 </html>

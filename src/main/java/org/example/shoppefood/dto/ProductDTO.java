@@ -19,4 +19,5 @@ public class ProductDTO {
     private Boolean status;
     public boolean favorite;
     private Long categoryId;
+    private String categoryName;
 }

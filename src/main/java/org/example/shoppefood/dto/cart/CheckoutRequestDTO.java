@@ -1,6 +1,5 @@
-package org.example.shoppefood.dto.request;
+package org.example.shoppefood.dto.cart;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

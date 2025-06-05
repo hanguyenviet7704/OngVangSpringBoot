@@ -53,4 +53,8 @@ public class HomeController {
         model.addAttribute("product", id);
         return "web/productDetail.html";
    }
+   @GetMapping({"/checkout"})
+    public String checkout (){
+        return "web/shoppingCart_checkout";
+   }
 }

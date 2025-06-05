@@ -1,153 +1,179 @@
 <!DOCTYPE html>
-<html lang="" xmlns:th="http://www.thymeleaf.org"
+<html lang="" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title></title>
-<meta charset="utf-8">
+	<title></title>
+	<meta charset="utf-8">
 </head>
 <body>
 
-	<th:block th:fragment= "header">
-	
-		<div class="backdrop"></div>
-		<a class="backtop fas fa-arrow-up" href="#"></a>
-		<div class="header-top">
-			<div class="container">
-				<div class="row">
-					<div style="display: flex; justify-content:space-between;">
-						<div class="col-md-12 col-lg-5">
-							<div class="header-top-welcome">
-								<p>Chào mừng bạn đến với cửa hàng thực phẩm !</p>
+<th:block th:fragment= "header">
+
+	<div class="backdrop"></div>
+	<a class="backtop fas fa-arrow-up" href="#"></a>
+	<div class="header-top">
+		<div class="container">
+			<div class="row">
+				<div style="display: flex; justify-content:space-between;">
+					<div class="col-md-12 col-lg-5">
+						<div class="header-top-welcome">
+							<p>Chào mừng bạn đến với cửa hàng thực phẩm !</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<header class="header-part">
+		<div class="container">
+			<div class="header-content" style=" height: 110px">
+				<div class="header-media-group">
+					<button class="header-user">
+						<img src="/images/user.png" alt="user">
+					</button>
+
+
+					<a href="/"> <img src="/images/logo.png" alt="logo">
+					</a>
+
+
+				</div>
+
+				<a href="/home" class="header-logo" style="height: 100px;width: auto;">
+					<img src="/images/logo.png" alt="logo" class="logo" style="height: 100px;width: auto;">
+				</a>
+				<form action="/searchProduct" class="header-form">
+					<input type="text" name="keyword" value="" placeholder="Tìm kiếm..." autocomplete="off">
+					<button>
+						<i class="fas fa-search"></i>
+					</button>
+				</form>
+
+				<div class="header-widget-group">
+
+					<a class="header-widget header-cart" title="Giỏ hàng">
+						<i class="fas fa-shopping-basket"></i> <sup id="totalCartItems">0</sup>
+					</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<nav class="navbar-part">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="navbar-content">
+						<ul class="navbar-list">
+							<li class="navbar-item dropdown"><a class="navbar-link " href="/home">Trang chủ</a>
+							</li>
+							<li class="navbar-item dropdown">
+								<a class="navbar-link " href="/aboutUs">Giới thiệu</a>
+
+							</li>
+							<li class="navbar-item dropdown">
+								<a class="navbar-link dropdown-arrow" href="javascript:void(0);">Sản phẩm</a>
+								<ul class="dropdown-position-list">
+									<li><a href="/products">Tất cả sản phẩm</a></li>
+								</ul>
+							</li>
+							<li class="navbar-item dropdown">
+								<a class="navbar-link dropdown-arrow" href="javascript:void(0);">Thể loại</a>
+								<ul class="dropdown-position-list">
+									<li>
+										<a href="/productsByCategory/4">Rau củ</a>
+									</li>
+									<li>
+										<a href="/productsByCategory/5">Trái cây</a>
+									</li>
+									<li>
+										<a href="/productsByCategory/6">Củ quả</a>
+									</li>
+									<li>
+										<a href="/productsByCategory/11">Hạt dinh dưỡng</a>
+									</li>
+									<li>
+										<a href="/productsByCategory/12">Đặt sản vùng miền</a>
+									</li>
+								</ul>
+							</li>
+							<li class="navbar-item dropdown">
+								<a class="navbar-link " href="/contact">Liên hệ</a>
+							</li>
+							<li class="navbar-item dropdown"><a class="navbar-link dropdown-arrow" href="javascript:void(0);">Tài khoản</a>
+								<ul class="dropdown-position-list">
+									<li><a href="javascript:void(0);" id="logout-link">Đăng xuất</a></li>
+
+								</ul>
+							</li>
+						</ul>
+						<div class="navbar-info-group">
+							<div class="navbar-info">
+								<i class="icofont-ui-touch-phone"></i>
+								<p>
+									<small>Số điện thoại</small><span>(+84) 357115095</span>
+								</p>
+							</div>
+							<div class="navbar-info">
+								<i class="icofont-ui-email"></i>
+								<p>
+									<small>email</small><span>ongvang@gmail.com</span>
+								</p>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
-		<header class="header-part">
-			<div class="container">
-				<div class="header-content" style=" height: 110px">
-					<div class="header-media-group">
-						<button class="header-user">
-							<img src="/images/user.png" alt="user">
-						</button>
+	</nav>
 
+	<!-- slide giỏ hàng -->
+	<aside class="cart-sidebar">
+		<div class="cart-header">
+			<div class="cart-total">
+				<i class="fas fa-shopping-basket"></i><span>Tổng số lượng giỏ hàng (1)</span>
+			</div>
+			<button class="cart-close">
+				<i class="icofont-close"></i>
+			</button>
 
-						<a href="/"> <img src="/images/logo.png" alt="logo">
-						</a>
-
-						<a class="header-widget-2 header-cart" title="Giỏ hàng">
-							<i class="fas fa-shopping-basket"></i> <sup id="totalCartItems">0</sup>
-						</a>
-					</div>
-
-					<a href="/home" class="header-logo" style="height: 100px;width: auto;">
-						<img src="/images/logo.png" alt="logo" class="logo" style="height: 100px;width: auto;">
+		</div>
+		<ul class="cart-list">
+			<li class="cart-item">
+				<div class="cart-media">
+					<a href="/productDetail?id=65">
+						<img src="/loadImage?imageName=qua-hach-kho.jpg" alt="product">
 					</a>
-					<form action="/searchProduct" class="header-form">
-						<input type="text" name="keyword" value="" placeholder="Tìm kiếm..." autocomplete="off">
-						<button>
-							<i class="fas fa-search"></i>
-						</button>
-					</form>
-
-					<div class="header-widget-group">
-
-						<a href="/favorite" class="header-widget" title="Yêu thích">
-							<i class="fas fa-heart"></i><sup id="totalSave">0</sup>
-						</a>
-						<a class="header-widget header-cart" title="Giỏ hàng">
-							<i class="fas fa-shopping-basket"></i> <sup id="totalCartItems">0</sup>
-						</a>
-					</div>
 				</div>
-			</div>
-		</header>
-		<nav class="navbar-part">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="navbar-content">
-							<ul class="navbar-list">
-								<li class="navbar-item dropdown"><a class="navbar-link " href="/home">Trang chủ</a>
-								</li>
-								<li class="navbar-item dropdown">
-									<a class="navbar-link " href="/aboutUs">Giới thiệu</a>
-
-								</li>
-								<li class="navbar-item dropdown">
-									<a class="navbar-link dropdown-arrow" href="javascript:void(0);">Sản phẩm</a>
-									<ul class="dropdown-position-list">
-										<li><a href="/products">Tất cả sản phẩm</a></li>
-									</ul>
-								</li>
-								<li class="navbar-item dropdown">
-									<a class="navbar-link dropdown-arrow" href="javascript:void(0);">Thể loại</a>
-									<ul class="dropdown-position-list">
-										<li>
-											<a href="/productsByCategory/4">Rau củ</a>
-										</li>
-										<li>
-											<a href="/productsByCategory/5">Trái cây</a>
-										</li>
-										<li>
-											<a href="/productsByCategory/6">Củ quả</a>
-										</li>
-										<li>
-											<a href="/productsByCategory/11">Hạt dinh dưỡng</a>
-										</li>
-										<li>
-											<a href="/productsByCategory/12">Đặt sản vùng miền</a>
-										</li>
-									</ul>
-								</li>
-								<li class="navbar-item dropdown">
-									<a class="navbar-link " href="/contact">Liên hệ</a>
-								</li>
-								<li class="navbar-item dropdown"><a class="navbar-link dropdown-arrow" href="javascript:void(0);">Tài khoản</a>
-									<ul class="dropdown-position-list">
-										<li><a href="/login">Đăng nhập</a></li>
-										<li><a href="/register">Đăng ký</a></li>
-										<li><a href="/forgotPassword">Quên mật khẩu</a></li>
-									</ul>
-								</li>
-							</ul>
-							<div class="navbar-info-group">
-								<div class="navbar-info">
-									<i class="icofont-ui-touch-phone"></i>
-									<p>
-										<small>Số điện thoại</small><span>(+84) 357115095</span>
-									</p>
-								</div>
-								<div class="navbar-info">
-									<i class="icofont-ui-email"></i>
-									<p>
-										<small>email</small><span>ongvang@gmail.com</span>
-									</p>
-								</div>
-							</div>
+				<div class="cart-info-group">
+					<div class="cart-info">
+						<h6>
+							<label>Tên sản phẩm :</label>
+							<a href="/productDetail?id=65" style="color: #119744">Quả hạch khô</a>
+						</h6>
+						<label>Đơn giá :</label>
+						<p>196.000 đ</p>
+					</div>
+					<div class="cart-action-group">
+						<div class="product-action">
+							<label>Số lượng :</label>
+							<input class="action-input" title="Quantity Number" type="text" name="quantity" value="3">
 						</div>
+						<h6>588.000 đ</h6>
 					</div>
 				</div>
-			</div>
-		</nav>
-	
-		<!-- slide giỏ hàng -->
-		<aside class="cart-sidebar">
-			<div class="cart-header">
-				<div class="cart-total">
-					<i class="fas fa-shopping-basket"></i><span>Tổng số lượng giỏ hàng (0)</span>
-				</div>
-				<button class="cart-close">
-					<i class="icofont-close"></i>
-				</button>
-			</div>
-			<div class="text-center">
-				<h4 style="color: #119744" class="mt-5">Hiện tại bạn chưa có sản phẩm nào trong giỏ hàng!</h4>
-				<h5 style="color: #119744">Mua sắp ngay nào!</h5>
-				<a href="/products" style="text-decoration: underline;">Click tại đây!</a>
-			</div>
-		</aside>
-	</th:block>
+			</li>
+		</ul>
+		<div class="cart-footer">
+			<a class="cart-checkout-btn" href="/checkout"><span class="checkout-label">Thanh Toán</span>
+			</a>
+		</div>
+
+	</aside>
+</th:block>
 </body>
+<!-- Include common JavaScript functions -->
+<script src="/js/common.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </html>

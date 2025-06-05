@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 @SuppressWarnings("serial")
@@ -22,8 +23,9 @@ public class OrderEntity implements Serializable {
 	private String address;
 	private String phone;
 	private int status;
-	@OneToMany(mappedBy = "order")
-	private List<OrderDetailEntity> orderDetails;
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OrderDetailEntity> orderDetails ;
+
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private UserEntity user;

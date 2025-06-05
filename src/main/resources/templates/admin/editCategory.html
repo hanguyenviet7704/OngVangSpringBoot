@@ -30,9 +30,7 @@
 	<!-- End Header -->
 	
 	<!-- Navbar -->
-	
 	<th:block th:replace="~{admin/fragments/navbar :: navbar}"></th:block>
-	
 	<!-- End Navbar -->
 	
 	<div class="main-panel">
@@ -64,31 +62,29 @@
 						<div class="card">
 							<div class="card-header">
 								<div class="d-flex align-items-center">
-									<h4 class="card-title" style="text-decoration: underline;">Quản lý thể loại</h4>
+									<h4 class="card-title" style="text-decoration: underline;">Chỉnh sửa thể loại</h4>
 								</div>
 							</div>
 							<div class="card-header">
 								<section class="row">
 						           <div class="col-6 offset-3 mt-4">
-						             <form th:action="@{/admin/addCategory}" th:object="${category}" method="post">
+						             <form id="editCategoryForm">
 							             <div class="card">
 							                 <div class="card-body">
 							                     <div class="form-group">
 							                       <label for="categoryId">ID <a style="color: red"><strong>*</strong></a></label>
-							                       <input type="hidden">
-							                       <input type="text" th:field="*{categoryId}" class="form-control" name="categoryId" id="categoryId" aria-describedby="categoryhelpId" placeholder="Mã thể loại ?" readonly="readonly">
+							                       <input type="text" class="form-control" name="categoryId" id="categoryId" readonly>
 							                     </div>
 							                     <div class="form-group">
-							                       <label for="name">Tên thể loại <a style="color: red"><strong>*</strong></a></label>
-							                       <input type="text" th:field="*{categoryName}" class="form-control" id="categoryName" aria-describedby="namhelpId" placeholder="Tên thể loại ?">
+							                       <label for="categoryName">Tên thể loại <a style="color: red"><strong>*</strong></a></label>
+							                       <input type="text" class="form-control" id="categoryName" required>
 							                     </div>
 							                 </div>
 							                 <div class="card-footer text-muted">
 							                 	<div class="modal-footer no-bd">
-													<button type="submit" id="" class="btn btn-primary">Cập nhật</button>
-													<button type="submit" class="btn btn-danger" data-dismiss="modal"  formaction="/admin/categories" formmethod="get">Hủy</button>
+													<button type="submit" class="btn btn-primary">Cập nhật</button>
+													<a th:href="@{/admin/categories}" class="btn btn-danger">Hủy</a>
 												</div>
-							
 							                 </div>
 							             </div>
 						           		</form>
@@ -127,10 +123,6 @@
 			</div>
 		</footer>
 	</div>
-	
-	
-	
-
 	</div>
 	<!--   Core JS Files   -->
 	<script src="../../assets/js/core/jquery.3.2.1.min.js"></script>
@@ -148,5 +140,6 @@
 	<script src="../../assets/js/atlantis.min.js"></script>
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="../../assets/js/setting-demo2.js"></script>
+	<script th:src="@{/jquery/admin/category.js}"></script>
 </body>
 </html>

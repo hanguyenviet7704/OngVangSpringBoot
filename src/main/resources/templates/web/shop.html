@@ -68,67 +68,6 @@
 					  <!-- item product -->
 					  <div id="list" class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4">
 
-
-
-						  <div class="col">
-							  <div class="product-card">
-								  <div class="product-media">
-									  <div class="product-label">
-										  <label class="label-text sale">- 5%</label>
-									  </div>
-
-
-
-
-									  <button class="product-wish">
-										  <i class="fas fa-heart"></i>
-									  </button>
-
-
-									  <a class="product-image" href="javascript:void(0);">
-										  <img src="/loadImage?imageName=17.jpg" alt="product">
-									  </a>
-									  <div class="product-widget">
-
-
-										  <a title="Hãy đăng nhập" href="/login" class="fas fa-heart">
-										  </a>
-
-
-
-
-										  <!--                         <a -->
-										  <!--                         title="Video về sản phẩm" -->
-										  <!--                         href="https://youtu.be/9xzcVxSBbG8" -->
-										  <!--                         class="venobox fas fa-play" -->
-										  <!--                         data-autoplay="true" -->
-										  <!--                         data-vbtype="video"> -->
-										  <!--                         </a> -->
-										  <a title="Chi tiết sản phẩm" href="/productDetail?id=19" class="fas fa-eye">
-										  </a>
-									  </div>
-								  </div>
-								  <div class="product-content">
-									  <div class="product-rating">
-										  <i class="active icofont-star"></i>
-										  <i class="active icofont-star"></i>
-										  <i class="active icofont-star"></i>
-										  <i class="active icofont-star"></i>
-										  <i class="icofont-star"></i>
-									  </div>
-									  <h6 class="product-name">
-										  <a href="javascript:void(0);">Nho xanh</a>
-									  </h6>
-									  <h6 class="product-price">
-										  <del>170.000 đ</del>
-										  <span>161.500 đ<small></small></span>
-									  </h6>
-									  <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=19">
-										  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
-									  </a>
-								  </div>
-							  </div>
-						  </div>
 					  </div>
 					  <div class="row">
 						  <div class="col-lg-12">
@@ -285,33 +224,29 @@
 			</div>
 		</div>
 	</section>
-    
-    
     <!--************************************
 				Footer Start
 		*************************************-->
 		<footer th:replace="~{/web/fragments/footer :: footer}"></footer>
-				
 		<!--************************************
 				Footer End
 		*************************************-->
-
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script th:src="@{/jquery/all_product.js}"></script>
-
-  <script src="vendor/bootstrap/jquery-1.12.4.min.js"></script>
-    <script src="vendor/bootstrap/popper.min.js"></script>
-    <script src="vendor/bootstrap/bootstrap.min.js"></script>
-    <script src="vendor/countdown/countdown.min.js"></script>
-    <script src="vendor/niceselect/nice-select.min.js"></script>
-    <script src="vendor/slickslider/slick.min.js"></script>
-    <script src="vendor/venobox/venobox.min.js"></script>
-    <script src="js/nice-select.js"></script>
-    <script src="js/countdown.js"></script>
-    <script src="js/accordion.js"></script>
-    <script src="js/venobox.js"></script>
-    <script src="js/slick.js"></script>
-    <script src="js/main.js"></script>
+  <script src="vendor/bootstrap/popper.min.js"></script>
+  <script src="vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="vendor/countdown/countdown.min.js"></script>
+  <script src="vendor/niceselect/nice-select.min.js"></script>
+  <script src="vendor/slickslider/slick.min.js"></script>
+  <script src="vendor/venobox/venobox.min.js"></script>
+  <script src="js/nice-select.js"></script>
+  <script src="js/countdown.js"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/venobox.js"></script>
+  <script src="js/slick.js"></script>
+  <script src="js/main.js"></script>
+  <script th:src="@{/jquery/all_products.js}"></script>
+  <script th:src="@{/jquery/products_by_category.js}"></script>
+  <script th:src="@{/jquery/cart.js}"></script>
+  <script th:src="@{/jquery/search.js}"></script>
   </body>
 </html>

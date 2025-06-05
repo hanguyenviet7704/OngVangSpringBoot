@@ -28,5 +28,8 @@ public class UserAPI {
         Pageable pageable = PageRequest. of (page, size);
         return userService.getAllUsers(pageable);
     }
-
+    @GetMapping("/users/now")
+    public Long getUserIDNow (){
+        return userService.getCurrentUserId();
+    }
 }

@@ -56,6 +56,21 @@
 							</li>
 						</ul>
 					</div>
+					
+					<!-- Alert messages -->
+					<div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+						<span th:text="${success}"></span>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+						<span th:text="${error}"></span>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
@@ -82,7 +97,7 @@
 												</button>
 											</div>
 											<div class="modal-body">
-												<form action="/admin/addCategory" method="post">
+												<form id="addCategoryForm">
 													<div class="row">
 														<div class="col-sm-12">
 															<div class="form-group form-group-default">
@@ -92,7 +107,7 @@
 														</div>
 													</div>
 													<div class="modal-footer no-bd">
-														<button type="submit" id="" class="btn btn-primary">Thêm</button>
+														<button type="submit" class="btn btn-primary">Thêm</button>
 														<button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
 													</div>
 												</form>
@@ -101,7 +116,7 @@
 									</div>
 								</div>
 								<div class="table-responsive">
-									<div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="add-row_length"><label>Show <select name="add-row_length" aria-controls="add-row" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="add-row_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="add-row"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="add-row" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="add-row_info">
+									<div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="add-row_length"></div></div><div class="col-sm-12 col-md-6"><div id="add-row_filter" class="dataTables_filter"></div></div></div><div class="row"><div class="col-sm-12"><table id="add-row" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="add-row_info">
 										<thead>
 										<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ID: activate to sort column descending" style="width: 313.656px;">ID</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 847.062px;">Name</th><th style="width: 126.281px;" class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending">Action</th></tr>
 										</thead>
@@ -122,7 +137,7 @@
 													<p style="color: black">Bạn có muốn xóa thể loại này không?</p>
 												</div>
 												<div class="modal-footer">
-													<a id="yesOption" type="button" class="btn btn-primary">Có</a>
+													<button id="yesOption" type="button" class="btn btn-primary">Có</button>
 													<button type="button" class="btn btn-danger" data-dismiss="modal">Không</button>
 												</div>
 											</div>

@@ -26,10 +26,10 @@ public class ProductEntity implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date enteredDate;
 	private Boolean status;
-	public boolean favorite;
-
 	@ManyToOne
 	@JoinColumn(name = "categoryId")
 	private CategoryEntity category;
+	public boolean favorite;
+
 
 }

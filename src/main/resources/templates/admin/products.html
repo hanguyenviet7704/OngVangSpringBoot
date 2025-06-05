@@ -83,62 +83,51 @@
 											<div class="modal-header no-bd">
 												<h5 class="modal-title">
 													<span class="fw-mediumbold" style="text-decoration: underline; color: black;">
-													thêm mới sản phẩm</span>
+													Thêm mới sản phẩm</span>
 												</h5>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">×</span>
 												</button>
 											</div>
 											<div class="modal-body">
-												<form action="/admin/addProduct" method="post" enctype="multipart/form-data">
+												<form id="addProductForm" enctype="multipart/form-data">
 													<div class="row">
 														<div class="col-sm-12">
 															<div class="form-group form-group-default">
 																<label>Tên sản phẩm</label>
-																<input id="productName" type="text" class="form-control" placeholder="Tên sản phẩm..." name="productName" value="">
+																<input id="productName" type="text" class="form-control" placeholder="Tên sản phẩm..." name="productName" required>
 															</div>
 														</div>
 														<div class="col-md-6 pr-0">
 															<div class="form-group form-group-default">
 																<label>Thể loại</label>
-																<select class="form-control" name="category.categoryId" id="categoryId">
-																	<option value="4">Rau củ</option>
-																	<option value="5">Trái cây</option>
-																	<option value="6">Củ quả</option>
-																	<option value="11">Hạt dinh dưỡng</option>
-																	<option value="12">Đặt sản vùng miền</option>
+																<select class="form-control" name="categoryId" id="categoryId" required>
+																	<option value="">Chọn thể loại</option>
 																</select>
 															</div>
 														</div>
-
 														<div class="col-md-6 pr-0">
 															<div class="form-group form-group-default">
 																<label>Đơn giá</label>
-																<input id="price" min="0" type="number" class="form-control" placeholder="Đơn giá" name="price" value="0.0">
+																<input id="price" min="0" type="number" class="form-control" placeholder="Đơn giá" name="price" required>
 															</div>
 														</div>
 														<div class="col-md-6 pr-0">
 															<div class="form-group form-group-default">
 																<label>Số lượng</label>
-																<input id="quantity" min="0" type="number" class="form-control" placeholder="Số lượng" name="quantity" value="0">
+																<input id="quantity" min="0" type="number" class="form-control" placeholder="Số lượng" name="quantity" required>
 															</div>
 														</div>
 														<div class="col-md-6 pr-0">
 															<div class="form-group form-group-default">
-																<label>Giảm giá</label>
-																<input id="discount" min="0" type="number" class="form-control" placeholder="Giảm giá" name="discount" value="0">
-															</div>
-														</div>
-														<div class="col-md-6 pr-0">
-															<div class="form-group form-group-default">
-																<label>Ngày thêm</label>
-																<input id="enteredDate" type="date" class="form-control" placeholder="Ngày thêm" name="enteredDate" value="">
+																<label>Giảm giá (%)</label>
+																<input id="discount" min="0" max="100" type="number" class="form-control" placeholder="Giảm giá" name="discount" value="0">
 															</div>
 														</div>
 														<div class="col-sm-12">
 															<div class="form-group form-group-default">
-																<label>Images</label>
-																<input type="file" id="productImage" name="file" class="form-control">
+																<label>Hình ảnh</label>
+																<input type="file" id="productImage" name="file" class="form-control" required>
 															</div>
 														</div>
 														<div class="col-sm-12">
@@ -149,7 +138,7 @@
 														</div>
 													</div>
 													<div class="modal-footer no-bd">
-														<button type="submit" id="" class="btn btn-primary">Thêm mới</button>
+														<button type="submit" class="btn btn-primary">Thêm mới</button>
 														<button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
 													</div>
 												</form>
@@ -159,16 +148,26 @@
 								</div>
 
 								<div class="table-responsive">
-									<div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="add-row_length"><label>Show <select name="add-row_length" aria-controls="add-row" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="add-row_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="add-row"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="add-row" class="display table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="add-row_info">
+									<div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="add-row_length"></div></div><div class="col-sm-12 col-md-6"><div id="add-row_filter" class="dataTables_filter"></div></div></div><div class="row"><div class="col-sm-12"><table id="add-row" class="display table table-striped table-hover dataTable no-footer" role="grid" aria-describedby="add-row_info">
 										<thead>
-										<tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ID: activate to sort column descending" style="width: 30.2812px;">ID</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Ảnh: activate to sort column ascending" style="width: 107.531px;">Ảnh</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Tên sản phẩm: activate to sort column ascending" style="width: 180.969px;">Tên sản phẩm</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Thể loại: activate to sort column ascending" style="width: 148.047px;">Thể loại</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Đơn giá: activate to sort column ascending" style="width: 85.9531px;">Đơn giá</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Giảm giá: activate to sort column ascending" style="width: 76.7188px;">Giảm giá</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Số lượng: activate to sort column ascending" style="width: 80.7031px;">Số lượng</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Ngày thêm: activate to sort column ascending" style="width: 101.094px;">Ngày thêm</th><th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Hành động: activate to sort column ascending" style="width: 163.703px;">Hành động</th></tr>
+										<tr role="row">
+											<th class="sorting_asc" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ID: activate to sort column descending" style="width: 30.2812px;">ID</th>
+											<th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Ảnh: activate to sort column ascending" style="width: 107.531px;">Ảnh</th>
+											<th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Tên sản phẩm: activate to sort column ascending" style="width: 180.969px;">Tên sản phẩm</th>
+											<th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Thể loại: activate to sort column ascending" style="width: 148.047px;">Thể loại</th>
+											<th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Đơn giá: activate to sort column ascending" style="width: 85.9531px;">Đơn giá</th>
+											<th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Giảm giá: activate to sort column ascending" style="width: 76.7188px;">Giảm giá</th>
+											<th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Số lượng: activate to sort column ascending" style="width: 80.7031px;">Số lượng</th>
+											<th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Ngày thêm: activate to sort column ascending" style="width: 101.094px;">Ngày thêm</th>
+											<th class="sorting" tabindex="0" aria-controls="add-row" rowspan="1" colspan="1" aria-label="Hành động: activate to sort column ascending" style="width: 163.703px;">Hành động</th>
+										</tr>
 										</thead>
 
-										<tbody id="category-table-body">
+										<tbody id="product-table-body">
 										</tbody>
 									</table></div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="add-row_info" role="status" aria-live="polite">Showing 1 to 5 of 34 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="add-row_paginate"><ul id="custom-pagination" class="pagination"><li class="paginate_button page-item previous disabled" id="add-row_previous"><a href="#" aria-controls="add-row" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="add-row" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="add-row" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="add-row" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="add-row" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="add-row" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="add-row" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item "><a href="#" aria-controls="add-row" data-dt-idx="7" tabindex="0" class="page-link">7</a></li><li class="paginate_button page-item next" id="add-row_next"><a href="#" aria-controls="add-row" data-dt-idx="8" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
-									<!-- Modal -->
-									<div class="modal" tabindex="-1" role="dialog" id="configmationId">
+									<!-- Modal Confirm Delete -->
+									<div class="modal fade" tabindex="-1" role="dialog" id="configmationId">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -181,12 +180,90 @@
 													<p style="color: black">Bạn muốn xóa sản phẩm này không?</p>
 												</div>
 												<div class="modal-footer">
-													<a id="yesOption" type="button" class="btn btn-primary">Có</a>
+													<button id="yesOption" type="button" class="btn btn-primary">Có</button>
 													<button type="button" class="btn btn-danger" data-dismiss="modal">Không</button>
 												</div>
 											</div>
 										</div>
 									</div>
+
+                                    <!-- Modal Edit Product -->
+                                    <div class="modal fade" id="editRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header no-bd">
+                                                    <h5 class="modal-title">
+                                                        <span class="fw-mediumbold" style="text-decoration: underline; color: black;">
+                                                        Chỉnh sửa sản phẩm</span>
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="editProductForm" enctype="multipart/form-data">
+                                                        <input type="hidden" id="editProductId" name="productId">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Tên sản phẩm</label>
+                                                                    <input id="editProductName" type="text" class="form-control" placeholder="Tên sản phẩm..." name="productName" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 pr-0">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Thể loại</label>
+                                                                    <select class="form-control" name="categoryId" id="editCategoryId" required>
+                                                                        <option value="">Chọn thể loại</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 pr-0">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Đơn giá</label>
+                                                                    <input id="editPrice" min="0" type="number" class="form-control" placeholder="Đơn giá" name="price" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 pr-0">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Số lượng</label>
+                                                                    <input id="editQuantity" min="0" type="number" class="form-control" placeholder="Số lượng" name="quantity" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 pr-0">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Giảm giá (%)</label>
+                                                                    <input id="editDiscount" min="0" max="100" type="number" class="form-control" placeholder="Giảm giá" name="discount" value="0">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Hình ảnh hiện tại</label>
+                                                                    <img id="currentProductImage" src="" alt="Hình ảnh sản phẩm" style="max-width: 100px; margin-top: 10px;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Chọn hình ảnh mới (nếu muốn thay đổi)</label>
+                                                                    <input type="file" id="editProductImage" name="file" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group form-group-default">
+                                                                    <label>Mô tả sản phẩm</label>
+                                                                    <textarea id="editDescription" class="form-control" placeholder="Mô tả sản phẩm" name="description"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer no-bd">
+                                                            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 								</div>
 							</div>
 						</div>
