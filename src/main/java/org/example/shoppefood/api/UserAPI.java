@@ -32,4 +32,9 @@ public class UserAPI {
     public Long getUserIDNow (){
         return userService.getCurrentUserId();
     }
+    
+    @GetMapping("/users/current")
+    public UserDTO getCurrentUser() {
+        return userService.getUserById(userService.getCurrentUserId());
+    }
 }

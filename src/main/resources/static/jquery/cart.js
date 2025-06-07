@@ -1,5 +1,4 @@
-
-    function loadCart(userId) {
+function loadCart(userId) {
     $.ajax({
         url: `http://localhost:8081/api/cart/${userId}?status=1`,
         method: "GET",
@@ -12,7 +11,6 @@
                 });
             }
             $('#totalCartItems').text(totalQuantity);
-
 
 
             // lấy dữ liệu để hiện ở phần giỏ hàng bên phải trang home
@@ -79,21 +77,23 @@
     });
 }
 
-    // Gọi hàm khi mở giỏ hàng (ví dụ)
-    $(document).ready(function () {
-        let userId ;
-        function getUserID() {
-            return $.ajax({
-                url: "http://localhost:8081/api/users/now",
-                type: "GET"
-            });
-        }
-        getUserID()
-            .then(function(response) {
-                userId = response;
-                loadCart(userId);
-            })
-            .catch(function(err) {
-                console.error("Lỗi khi lấy ID user", err);
-            });
+// Gọi hàm khi mở giỏ hàng (ví dụ)
+$(document).ready(function () {
+    let userId;
+
+    function getUserID() {
+        return $.ajax({
+            url: "http://localhost:8081/api/users/now",
+            type: "GET"
+        });
+    }
+
+    getUserID()
+        .then(function (response) {
+            userId = response;
+            loadCart(userId);
+        })
+        .catch(function (err) {
+            console.error("Lỗi khi lấy ID user", err);
+        });
 });

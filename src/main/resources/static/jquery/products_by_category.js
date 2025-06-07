@@ -6,10 +6,10 @@ $(document).ready(function () {
         return $.ajax({
             url: "http://localhost:8081/api/users/now",
             type: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
             userId = response;
             return response;
-        }).catch(function() {
+        }).catch(function () {
             userId = null;
             return null;
         });
@@ -18,7 +18,7 @@ $(document).ready(function () {
     // 2. Xác định route và load sản phẩm
     const pathSegments = window.location.pathname.split('/');
     const categoryId = pathSegments.pop() || pathSegments.pop();
-    
+
     // Chỉ chạy khi ở route /productsByCategory/{id}
     if (pathSegments.includes('productsByCategory') && categoryId) {
         checkLogin().then(() => {
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
     // 4. Khởi tạo sự kiện thêm giỏ hàng
     function initCartHandlers() {
-        $(document).on('click', '.product-add', function(e) {
+        $(document).on('click', '.product-add', function (e) {
             e.preventDefault();
             const productId = $(this).closest('.product-card').find('.product-name a').attr('href').split('id=')[1];
 
@@ -49,7 +49,6 @@ $(document).ready(function () {
                 alert("Sản phẩm đã hết hàng!");
                 return;
             }
-
 
 
             addToCart(productId)
@@ -92,14 +91,12 @@ $(document).ready(function () {
                     <div class="product-card" data-product-id="${product.productId}">
                         <div class="product-media">
                             ${product.discount > 0 ? `<div class="product-label"><label class="label-text sale">- ${product.discount}%</label></div>` : ''}
-                            <button class="product-wish">
-                                <i class="fas fa-heart"></i>
-                            </button>
+                          
                             <a class="product-image" href="/productDetail?id=${product.productId}">
                                 <img src="/loadImage?imageName=${product.productImage}" alt="${product.productName}">
                             </a>
                             <div class="product-widget">
-                                <a title="Yêu thích" href="/login" class="fas fa-heart"></a>
+                              
                                 <a title="Chi tiết sản phẩm" href="/productDetail/${product.productId}" class="fas fa-eye"></a>
                             </div>
                         </div>
@@ -137,7 +134,7 @@ $(document).ready(function () {
         if (currentPage > 0) {
             $('.pagination').append(`
                 <li class="page-item">
-                    <a class="page-link" href="#" data-page="${currentPage-1}" data-category="${categoryId}">
+                    <a class="page-link" href="#" data-page="${currentPage - 1}" data-category="${categoryId}">
                         &laquo;
                     </a>
                 </li>
@@ -160,7 +157,7 @@ $(document).ready(function () {
         if (currentPage < totalPages - 1) {
             $('.pagination').append(`
                 <li class="page-item">
-                    <a class="page-link" href="#" data-page="${currentPage+1}" data-category="${categoryId}">
+                    <a class="page-link" href="#" data-page="${currentPage + 1}" data-category="${categoryId}">
                         &raquo;
                     </a>
                 </li>

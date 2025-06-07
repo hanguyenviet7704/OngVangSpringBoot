@@ -9,5 +9,5 @@ import java.util.List;
 public interface UserService {
     public ResponsePage <List<UserDTO>> getAllUsers(Pageable pageable);
     public Long getCurrentUserId();
-
+    public UserDTO getUserById(Long userId);
 }

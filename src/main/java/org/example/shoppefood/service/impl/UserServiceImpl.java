@@ -49,4 +49,12 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public UserDTO getUserById(Long userId) {
+        UserEntity user = userRepository.findByUserId(userId);
+        if (user == null) {
+            return null;
+        }
+        return userMapper.toDto(user);
+    }
 }

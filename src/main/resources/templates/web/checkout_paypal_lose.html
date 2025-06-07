@@ -19,7 +19,7 @@
       name="keywords"
       content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online"
     />
-<title>Đặt hàng thành công - Thế giới nông sản</title>
+    <title>Thế giới nông sản</title>
 <link rel="icon" href="/images/logo.png" />
     <link rel="stylesheet" href="fonts/flaticon/flaticon.css" />
     <link rel="stylesheet" href="fonts/icofont/icofont.min.css" />
@@ -45,8 +45,10 @@
       class="inner-section single-banner"
       style="background: url(images/single-banner.jpg) no-repeat center">
       <div class="container">
-        <h2>Đặt hàng thành công</h2>
-
+        <h2>Thông tin đơn hàng</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a th:href="@{/}">Trang chủ</a></li>
+        </ol>
       </div>
     </section>
     <section class="inner-section checkout-part">
@@ -57,21 +59,19 @@
           </div>
           <div class="col-lg-12">
             <div class="account-card">
-              <div class="account-title"><h4>Thông tin đơn hàng</h4></div>
-              <div class="account-content">
-                <div class="text-center">
-                  <h3 style="color: #119744" class="mt-5">ĐẶT HÀNG THÀNH CÔNG!</h3>
-                  <br>
-                  <h4>Chúc mừng bạn đã đặt hàng thành công!</h4>
-                  <h5><em>Chúng tôi sẽ sớm giao đơn hàng cho bạn, cảm ơn!</em></h5>
-                  <h5><em>Thank you for your purchase, thank you!</em></h5>
-                  <hr>
-
-                  <a th:href="@{/home}" class="btn btn-primary mt-4">Tiếp tục mua sắm</a>
-                </div>
+              <div class="account-title"><h4>Đơn Đặt Hàng Của Bạn</h4></div>
+              <div class="text-center">
+                <h3 style="color: red" class="mt-5">GIAO DỊCH THANH TOÁN ĐƠN HÀNG QUA PAYPAL THẤT BẠI!</h3>
+                <br>
+                <h4>Rất tiếc, thanh toán của bạn không thành công.</h4>
+                <h5><em>Vui lòng thử lại hoặc chọn phương thức thanh toán khác.</em></h5>
+                <h5><em>Your payment was not successful. Please try again or use another payment method.</em></h5>
+                <hr>
+                <a th:href="@{/home}" style="text-decoration: underline; color: red"><em>Click tại đây để quay lại mua sắm!</em></a>
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </section>
@@ -80,25 +80,46 @@
       class="news-part"
       style="background: url(images/newsletter.jpg) no-repeat center">
       <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-5 col-lg-6 col-xl-7">
-            <div class="news-text">
-              <h2>Nhận chiết khấu 20% cho người đăng ký</h2>
-              <p>Nhận chiết khấu 20% cho người đăng ký</p>
+        <div class="row intro-content">
+          <div class="col-sm-6 col-lg-3">
+            <div class="intro-wrap">
+              <div class="intro-icon"><i class="fas fa-truck"></i></div>
+              <div class="intro-content">
+                <h5>Giao Hàng Miễn Phí</h5>
+                <p>Miễn phí vận chuyển cho tất cả đơn hàng trên toàn quốc.</p>
+              </div>
             </div>
           </div>
-          <div class="col-md-7 col-lg-6 col-xl-5">
-            <form class="news-form">
-              <input
-                type="text"
-                placeholder="Enter Your Email Address"
-              /><button>
-                <span><i class="icofont-ui-email"></i>Subscribe</span>
-              </button>
-            </form>
+          <div class="col-sm-6 col-lg-3">
+            <div class="intro-wrap">
+              <div class="intro-icon"><i class="fas fa-sync-alt"></i></div>
+              <div class="intro-content">
+                <h5>Đổi Trả Dễ Dàng</h5>
+                <p>Đổi trả sản phẩm trong vòng 7 ngày nếu có lỗi từ nhà sản xuất.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="intro-wrap">
+              <div class="intro-icon"><i class="fas fa-headset"></i></div>
+              <div class="intro-content">
+                <h5>Hỗ Trợ 24/7</h5>
+                <p>Đội ngũ chăm sóc khách hàng luôn sẵn sàng hỗ trợ bạn mọi lúc.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="intro-wrap">
+              <div class="intro-icon"><i class="fas fa-lock"></i></div>
+              <div class="intro-content">
+                <h5>Thanh Toán An Toàn</h5>
+                <p>Bảo mật thông tin và an toàn tuyệt đối cho mọi giao dịch thanh toán.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
     </section>
     <section class="intro-part">
       <div class="container">

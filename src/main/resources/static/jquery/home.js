@@ -50,21 +50,15 @@ $(document).ready(function () {
 
         products.forEach((product, index) => {
             const discountedPrice = product.price * (1 - product.discount / 100);
-            const enteredDate = new Date(product.enteredDate);
-            const isNew = (new Date() - enteredDate) / (1000 * 60 * 60 * 24) <= 7;
-            const wishClass = product.favorite ? 'active' : '';
 
             const productHtml = `
             <li class="slick-slide" data-slick-index="${index}" aria-hidden="false" tabindex="-1" style="width: 236px;">
                 <div class="product-card">
                     <div class="product-media">
                         <div class="product-label">
-                            ${isNew ? '<label class="label-text new">mới về</label>' : ''}
                             ${product.discount > 0 ? `<label class="label-text sale">-${product.discount}%</label>` : ''}
                         </div>
-                        <button class="product-wish wish ${wishClass}" tabindex="-1">
-                            <i class="fas fa-heart"></i>
-                        </button>
+               
                         <a class="product-image" href="/productDetail/${product.productId}" tabindex="-1">
                             <img src="/loadImage?imageName=${product.productImage}" alt="${product.productName}">
                         </a>
@@ -123,6 +117,6 @@ $(document).ready(function () {
         })
         .catch(function (err) {
             console.error("Không lấy được user ID:", err);
-            fetchProducts(); // Vẫn tải sản phẩm dù chưa đăng nhập
+            fetchProducts();
         });
 });

@@ -3,6 +3,7 @@ package org.example.shoppefood.api;
 import org.example.shoppefood.service.ProductChatService;
 import org.example.shoppefood.dto.chatbot.ChatRequest;
 import org.example.shoppefood.dto.chatbot.ChatResponse;
+import org.example.shoppefood.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -18,6 +19,8 @@ public class ChatBotAPI {
     @Autowired
     private ProductChatService productChatService;
 
+    @Autowired
+    private UserService userService;
     @PostMapping("/message")
     public ResponseEntity<ChatResponse> processMessage(@RequestBody ChatRequest request) {
         try {
@@ -26,13 +29,10 @@ public class ChatBotAPI {
                     .body(new ChatResponse("Vui lòng nhập tin nhắn."));
             }
 
-            // Tạo một ID tạm thời cho user nếu chưa có
-            String userId = request.getUserId();
-            if (!StringUtils.hasText(userId)) {
-                userId = UUID.randomUUID().toString();
-            }
+            long userId = userService.getCurrentUserId();
+            String userID = String.valueOf(userId);
 
-            String response = productChatService.processMessage(request.getMessage(), userId);
+            String response = productChatService.processMessage(request.getMessage(), userID);
             return ResponseEntity.ok(new ChatResponse(response));
         } catch (Exception e) {
             return ResponseEntity.internalServerError()

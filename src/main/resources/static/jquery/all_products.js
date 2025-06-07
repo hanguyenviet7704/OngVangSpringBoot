@@ -89,14 +89,12 @@ $(document).ready(function () {
                     <div class="product-card" data-product-id="${product.productId}">
                         <div class="product-media">
                             ${product.discount > 0 ? `<div class="product-label"><label class="label-text sale">- ${product.discount}%</label></div>` : ''}
-                            <button class="product-wish">
-                                <i class="fas fa-heart"></i>
-                            </button>
+                            
                             <a class="product-image" href="/productDetail?id=${product.productId}">
                                 <img src="/loadImage?imageName=${product.productImage}" alt="${product.productName}">
                             </a>
                             <div class="product-widget">
-                                <a title="Yêu thích" href="/login" class="fas fa-heart"></a>
+                               
                                 <a title="Chi tiết sản phẩm" href="/productDetail/${product.productId}" class="fas fa-eye"></a>
                             </div>
                         </div>

@@ -19,8 +19,8 @@ public class CategoryAPI {
 
     @GetMapping("/categoris")
     public ResponsePage<List<CategoryDTO>> getAllCategories(
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "5") int size
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
         return categoryService.getAllCategory(pageable);

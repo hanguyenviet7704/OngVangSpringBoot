@@ -21,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -153,6 +154,8 @@ public class ProductServiceImpl implements ProductService {
         productEntity.setPrice(productDTO.getPrice());
         productEntity.setDiscount(productDTO.getDiscount());
         productEntity.setDescription(productDTO.getDescription());
+        // Cập nhật ngày nhập hàng là ngày hiện tại
+        productEntity.setEnteredDate(new Date());
         // productEntity.setStatus(productDTO.getStatus()); // Handle status if needed
 
         // Fetch and set Category

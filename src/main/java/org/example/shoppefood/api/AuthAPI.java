@@ -1,4 +1,5 @@
 package org.example.shoppefood.api;
+
 import org.example.shoppefood.dto.auth.LoginRequest;
 import org.example.shoppefood.dto.auth.RegisterRequest;
 import org.example.shoppefood.entity.UserEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthAPI {
@@ -47,9 +49,8 @@ public class AuthAPI {
                 response.put("message", "Password is required");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
             }
-            // Check if user exists
             UserEntity user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new AuthenticationException("User not found"));
+                    .orElseThrow(() -> new AuthenticationException("User not found"));
             if (!user.getStatus()) {
                 Map<String, Object> response = new HashMap<>();
                 response.put("success", false);
@@ -59,7 +60,7 @@ public class AuthAPI {
             // Authenticate user
             try {
                 Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+                        new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
                 );
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 Map<String, Object> response = new HashMap<>();

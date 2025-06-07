@@ -359,128 +359,154 @@
 <script src="js/main.js"></script>
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-
-<!-- Thêm vào cuối body, trước thẻ đóng body -->
 <link rel="stylesheet" href="/css/chatbot.css">
+
+<!-- Nút mở chat -->
 <div class="chat-toggle" id="chatToggle">
-    <img src="/images/chat-icon.svg" alt="Chat">
+	<img src="/images/chat-icon.svg" alt="Chat">
 </div>
 
+<!-- Hộp chat -->
 <div class="chat-container hidden" id="chatContainer">
-    <div class="chat-header">
-        <h3>Chat với OngVangChatBot</h3>
-        <button onclick="toggleChat()" style="background: none; border: none; color: white; cursor: pointer;">×</button>
-    </div>
-    <div class="chat-messages" id="chatMessages">
-        <div class="message bot-message">
-            Xin chào! Tôi có thể giúp gì cho bạn?
-        </div>
-    </div>
-    <div class="chat-input">
-        <input type="text" id="messageInput" placeholder="Nhập tin nhắn của bạn..." onkeypress="handleKeyPress(event)">
-        <button onclick="sendMessage()">Gửi</button>
-    </div>
+	<div class="chat-header">
+		<h3>Chat với OngVangChatBot</h3>
+		<button onclick="toggleChat()" style="background: none; border: none; color: white; cursor: pointer;">×</button>
+	</div>
+
+	<!-- Khung tin nhắn -->
+	<div class="chat-messages" id="chatMessages">
+		<div class="message bot-message">
+			Xin chào! Tôi có thể giúp gì cho bạn?
+		</div>
+	</div>
+
+	<!-- Gợi ý câu hỏi -->
+	<div class="chat-suggestions" id="chatSuggestions">
+		<button onclick="sendSuggestedMessage('Đơn hàng của tôi thế nào rồi ?')">Đơn hàng?</button>
+		<button onclick="sendSuggestedMessage('Địa chỉ bạn ở đâu?')">Địa chỉ shop?</button>
+		<button onclick="sendSuggestedMessage('Thông tin vận chuyển như nào')">Vận chuyển</button>
+	</div>
+
+	<!-- Ô nhập và nút gửi -->
+	<div class="chat-input">
+		<input type="text" id="messageInput" placeholder="Nhập tin nhắn của bạn..." onkeypress="handleKeyPress(event)">
+		<button onclick="sendMessage()">Gửi</button>
+	</div>
 </div>
 
+<!-- Script xử lý -->
 <script>
-    let userId = localStorage.getItem('chatUserId') || generateUserId();
-    localStorage.setItem('chatUserId', userId);
+	let userId = localStorage.getItem('chatUserId') || generateUserId();
+	localStorage.setItem('chatUserId', userId);
 
-    function generateUserId() {
-        return 'user_' + Math.random().toString(36).substr(2, 9);
-    }
+	function generateUserId() {
+		return 'user_' + Math.random().toString(36).substr(2, 9);
+	}
 
-    function toggleChat() {
-        const container = document.getElementById('chatContainer');
-        const toggle = document.getElementById('chatToggle');
-        if (container && toggle) {
-            container.classList.toggle('hidden');
-            toggle.classList.toggle('hidden');
-        }
-    }
+	function toggleChat() {
+		const container = document.getElementById('chatContainer');
+		const toggle = document.getElementById('chatToggle');
+		if (container && toggle) {
+			container.classList.toggle('hidden');
+			toggle.classList.toggle('hidden');
+		}
+	}
 
-    function handleKeyPress(event) {
-        if (event.key === 'Enter') {
-            sendMessage();
-        }
-    }
+	function showSuggestions() {
+		const suggestions = document.getElementById('chatSuggestions');
+		if (suggestions) {
+			suggestions.style.display = 'flex';
+		}
+	}
 
-    function addMessage(message, isUser = false) {
-        const messagesDiv = document.getElementById('chatMessages');
-        if (messagesDiv) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-            messageDiv.textContent = message;
-            messagesDiv.appendChild(messageDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-    }
+	function handleKeyPress(event) {
+		if (event.key === 'Enter') {
+			sendMessage();
+		}
+	}
 
-    function showTypingIndicator() {
-        const messagesDiv = document.getElementById('chatMessages');
-        if (messagesDiv) {
-            const indicator = document.createElement('div');
-            indicator.className = 'typing-indicator';
-            indicator.innerHTML = '<span></span><span></span><span></span>';
-            indicator.id = 'typingIndicator';
-            messagesDiv.appendChild(indicator);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-    }
+	function addMessage(message, isUser = false) {
+		const messagesDiv = document.getElementById('chatMessages');
+		if (messagesDiv) {
+			const messageDiv = document.createElement('div');
+			messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+			messageDiv.textContent = message;
+			messagesDiv.appendChild(messageDiv);
+			messagesDiv.scrollTop = messagesDiv.scrollHeight;
+		}
+	}
 
-    function removeTypingIndicator() {
-        const indicator = document.getElementById('typingIndicator');
-        if (indicator) {
-            indicator.remove();
-        }
-    }
+	function showTypingIndicator() {
+		const messagesDiv = document.getElementById('chatMessages');
+		if (messagesDiv) {
+			const indicator = document.createElement('div');
+			indicator.className = 'typing-indicator';
+			indicator.innerHTML = '<span></span><span></span><span></span>';
+			indicator.id = 'typingIndicator';
+			messagesDiv.appendChild(indicator);
+			messagesDiv.scrollTop = messagesDiv.scrollHeight;
+		}
+	}
 
-    async function sendMessage() {
-        const input = document.getElementById('messageInput');
-        if (!input) return;
+	function removeTypingIndicator() {
+		const indicator = document.getElementById('typingIndicator');
+		if (indicator) {
+			indicator.remove();
+		}
+	}
 
-        const message = input.value.trim();
-        if (message) {
-            addMessage(message, true);
-            input.value = '';
-            showTypingIndicator();
+	async function sendMessage() {
+		const input = document.getElementById('messageInput');
+		if (!input) return;
 
-            try {
-                const response = await fetch('http://localhost:8081/api/chatbot/message', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        message: message,
-                        userId: userId
-                    })
-                });
+		const message = input.value.trim();
+		if (message) {
+			addMessage(message, true);
+			input.value = '';
+			showTypingIndicator();
 
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+			try {
+				const response = await fetch('http://localhost:8081/api/chatbot/message', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						message: message,
+						userId: userId
+					})
+				});
 
-                const data = await response.json();
-                removeTypingIndicator();
-                addMessage(data.message);
-            } catch (error) {
-                console.error('Error:', error);
-                removeTypingIndicator();
-                addMessage('Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.');
-            }
-        }
-    }
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
 
-    // Thêm event listener khi trang load xong
-    document.addEventListener('DOMContentLoaded', function() {
-        const chatToggle = document.getElementById('chatToggle');
-        if (chatToggle) {
-            chatToggle.addEventListener('click', toggleChat);
-        }
-    });
+				const data = await response.json();
+				removeTypingIndicator();
+				addMessage(data.message);
+				showSuggestions();
+			} catch (error) {
+				console.error('Error:', error);
+				removeTypingIndicator();
+				addMessage('Xin lỗi, đã có lỗi xảy ra. Vui lòng thử lại sau.');
+				showSuggestions();
+			}
+		}
+	}
+
+	function sendSuggestedMessage(text) {
+		const input = document.getElementById('messageInput');
+		input.value = text;
+		sendMessage();
+	}
+
+	document.addEventListener('DOMContentLoaded', function () {
+		const chatToggle = document.getElementById('chatToggle');
+		if (chatToggle) {
+			chatToggle.addEventListener('click', toggleChat);
+		}
+	});
 </script>
-
 
 
 </body>

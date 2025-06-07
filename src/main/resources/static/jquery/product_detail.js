@@ -47,7 +47,7 @@ function fetchProductsByProductID(productID) {
                         <img src="/loadImage?imageName=${p.productImage}" alt="product">
                     </a>
                     <div class="product-widget">
-                        <a title="Hãy đăng nhập" href="/login" class="fas fa-heart" tabindex="0"></a>
+                     
                         <a title="Chi tiết sản phẩm" href="/productDetail/${p.productId}" class="fas fa-eye" tabindex="0"></a>
                     </div>
                 </div>
@@ -66,9 +66,7 @@ function fetchProductsByProductID(productID) {
                         ${p.discount > 0 ? `<del>${p.price.toLocaleString()} đ</del>` : ''}
                         <span>${discountedPrice.toLocaleString()} đ<small> /kg</small></span>
                     </h6>
-                    <a class="product-add1" title="Thêm giỏ hàng" href="/addToCart?productId=${p.productId}" tabindex="0">
-                        <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
-                    </a>
+                    
                 </div>
             </div>
         </li>
@@ -156,12 +154,7 @@ function renderProduct(response) {
 								</li>
 							</ul>
 						</div>
-						<div class="details-add-group">
-							<a class="product-add1" style="background-color: #119744" title="Thêm giỏ hàng" href="/addToCart?productId=65">
-								<i style="color: white" class="fas fa-shopping-basket"></i>
-								<span style="color: white">Thêm giỏ hàng</span>
-							</a>
-						</div>
+					
 					</div>
 				</div>
 			</div>
